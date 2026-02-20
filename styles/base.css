@@ -1,0 +1,131 @@
+/* ---------------------------------------------
+   BASE.CSS - Reset, Typography, and Base Styles
+   Gives every page a clean, consistent starting point.
+   Includes accessibility basics like skip links and focus styles.
+---------------------------------------------- */
+
+/* ---------------------------------------------
+   RESET: Remove default browser styles
+---------------------------------------------- */
+* {
+  margin: 0; /* Remove all default margins */
+  padding: 0; /* Remove all default padding */
+  box-sizing: border-box; /* Include padding and border in the element’s width */
+}
+
+/* ---------------------------------------------
+   HTML: Root element settings
+---------------------------------------------- */
+html {
+  font-size: 16px; /* Set the base font size for rem units */
+  scroll-behavior: smooth; /* Use smooth scrolling for anchor links */
+}
+
+/* Turn off smooth scrolling if the user prefers less motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto; /* Jump instantly to the target for accessibility */
+  }
+}
+
+/* ---------------------------------------------
+   BODY: Page-level styles
+---------------------------------------------- */
+body {
+  font-family: var(--font-sans); /* Use the sans-serif body font */
+  line-height: 1.6; /* Set comfortable line spacing for reading */
+  color: var(--color-ink); /* Use the main text color from tokens */
+  background: var(--color-bg); /* Use the page background color from tokens */
+  min-height: 100vh; /* Make sure the body is at least the full viewport height */
+}
+
+/* ---------------------------------------------
+   HEADINGS: Typography hierarchy
+---------------------------------------------- */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif); /* Use the serif heading font */
+  line-height: 1.3; /* Tighter line spacing for headings */
+  margin-bottom: var(--spacing-md); /* Add space below each heading */
+}
+
+/* Heading sizes using a modular scale */
+h1 { font-size: 2.441rem; } /* Largest heading size (about 39px) */
+h2 { font-size: 1.953rem; } /* Second level heading size (about 31px) */
+h3 { font-size: 1.563rem; } /* Third level heading size (about 25px) */
+h4 { font-size: 1.25rem; } /* Fourth level heading size (about 20px) */
+
+/* ---------------------------------------------
+   LINKS: Default link styles
+---------------------------------------------- */
+a {
+  color: var(--color-primary-gold-600); /* Use darker gold for normal links */
+  text-decoration: none; /* Remove the underline by default */
+  transition: color var(--transition-fast); /* Smoothly change color on hover */
+}
+
+/* Link hover and focus states */
+a:hover, a:focus {
+  color: var(--color-primary-gold); /* Use brighter gold on hover or focus */
+  text-decoration: underline; /* Show an underline for clarity */
+}
+
+/* ---------------------------------------------
+   FORM ELEMENTS: Inherit font styles
+---------------------------------------------- */
+button, input, select, textarea {
+  font: inherit; /* Use the same font as the parent element */
+  color: inherit; /* Use the same text color as the parent element */
+}
+
+/* ---------------------------------------------
+   MEDIA: Responsive images and videos
+---------------------------------------------- */
+img, video {
+  max-width: 100%; /* Do not let media overflow its container */
+  height: auto; /* Keep the original aspect ratio */
+  display: block; /* Remove the inline gap below media */
+}
+
+/* ---------------------------------------------
+   FOCUS STYLES: Visible keyboard focus
+---------------------------------------------- */
+:focus-visible {
+  outline: 2px solid var(--color-focus); /* Draw a clear focus outline */
+  outline-offset: 2px; /* Leave a small gap between the outline and the element */
+}
+
+/* ---------------------------------------------
+   SKIP LINK: Jump to the main content
+   Hidden off-screen until focused with the keyboard
+---------------------------------------------- */
+.skip-link {
+  position: absolute; /* Position the link off-screen by default */
+  top: -40px; /* Place it above the viewport so it is hidden */
+  left: 0; /* Align it to the left edge */
+  background: var(--color-primary-gold); /* Use gold for the link background */
+  color: var(--color-ink); /* Use dark text for contrast */
+  padding: var(--spacing-sm) var(--spacing-md); /* Make it easy to click or tap */
+  z-index: 100; /* Keep it above other elements when shown */
+  font-weight: 600; /* Make the link text bold */
+}
+
+/* Show the skip link when it receives focus */
+.skip-link:focus {
+  top: 0; /* Move the link into view at the top of the page */
+}
+
+/* ---------------------------------------------
+   SCREEN READER ONLY: Hide visually but keep for assistive tech
+   Useful for ARIA live regions, extra labels, or hidden headings
+---------------------------------------------- */
+.sr-only {
+  position: absolute; /* Take it out of normal flow */
+  width: 1px; /* Make the element very small */
+  height: 1px; /* Make the element very small */
+  padding: 0; /* Remove padding */
+  margin: -1px; /* Move it slightly off-screen */
+  overflow: hidden; /* Hide anything that might spill out */
+  clip: rect(0,0,0,0); /* Clip the element to nothing (legacy technique) */
+  white-space: nowrap; /* Prevent the text from wrapping */
+  border: 0; /* Remove borders */
+}

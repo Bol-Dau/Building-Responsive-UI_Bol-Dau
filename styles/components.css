@@ -1,0 +1,674 @@
+/* ---------------------------------------------
+   COMPONENTS.CSS - For the UI Component Styles
+   This file styles all reusable UI parts: header, hero, cards, forms, tables, modals, etc.
+---------------------------------------------- */
+
+/* ---------------------------------------------
+   HEADER AND NAVIGATION
+   Sticky navigation bar that stays at the top while scrolling
+---------------------------------------------- */
+.header {
+  background: var(--color-surface); /* Use the surface color for the header background */
+  border-bottom: 1px solid var(--color-border); /* Draw a thin line under the header */
+  position: sticky; top: 0; /* Keep the header fixed at the top during scroll */
+  z-index: 50; /* Place the header above page content but below modals */
+}
+
+.nav {
+  display: flex; /* Lay out the nav items in a row */
+  flex-wrap: wrap; /* Move items to the next line on small screens */
+  gap: var(--spacing-sm); /* Add small space between nav items */
+  padding: var(--spacing-md); /* Add inner padding around the nav */
+  max-width: 1200px; margin: 0 auto; /* Limit width and center the nav */
+}
+
+.nav a {
+  padding: var(--spacing-sm) var(--spacing-md); /* Make link targets comfortable to tap */
+  border-radius: var(--radius-sm); /* Round the corners of each link */
+  transition: background var(--transition-fast); /* Animate the background change on hover */
+}
+
+.nav a:hover, .nav a:focus {
+  background: var(--color-border); /* Show a light background on hover or focus */
+  text-decoration: none; /* Keep links without underline on hover */
+}
+
+.nav a[aria-current="page"] {
+  background: var(--color-primary-gold); /* Highlight the current page link */
+  color: var(--color-ink); /* Use right color text with the when the theme is changed */
+  font-weight: 600; /* Make the current page link bold */
+}
+
+/* ---------------------------------------------
+   HERO
+   Full-width video area with centered overlay text
+---------------------------------------------- */
+.hero {
+  position: relative; /* Create a positioning context for video and overlay */
+  height: calc(100svh - 120px); /* Fill the screen height minus a small bottom gap */
+  overflow: hidden; /* Hide any video overflow outside the hero */
+  display: flex; align-items: center; justify-content: center; /* Center fallback content */
+}
+
+.hero-video {
+  position: absolute; top: 0; left: 0; /* Pin the video to the top-left corner */
+  width: 100%; height: 100%; /* Make the video fill the hero */
+  object-fit: cover; /* Fill the box without stretching the video */
+}
+
+.hero-overlay {
+  position: absolute; inset: 0; /* Stretch the overlay to cover the hero */
+  background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.6)); /* Darken the video for readable text */
+  display: flex; align-items: center; justify-content: center; /* Center the overlay content */
+  color: white; text-align: center; /* Use white, centered text */
+  padding: var(--spacing-lg); /* Add padding for comfort on narrow screens */
+}
+
+.hero-title {
+  font-size: 3rem; /* Use a large title size */
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.8); /* Add shadow to keep text readable on video */
+  color: #E0C874; /* Use the brand gold color */
+}
+
+/* ---------------------------------------------
+   SECTION
+   Standard content wrapper with consistent spacing and centered width
+---------------------------------------------- */
+.section {
+  padding: var(--spacing-2xl) var(--spacing-md); /* Add vertical rhythm and side padding */
+  max-width: 1200px; /* Limit the line length for easier reading */
+  margin: 0 auto; /* Center the section on the page */
+}
+
+/* ---------------------------------------------
+   TWO-COLUMN LAYOUT
+   Stacks on mobile, sits side-by-side on larger screens
+---------------------------------------------- */
+.two-col {
+  display: flex; /* Use flexbox for the layout */
+  flex-direction: column; /* Stack items vertically by default (mobile first) */
+  gap: var(--spacing-xl); /* Add space between the two columns */
+  align-items: center; /* Center items when stacked */
+}
+
+/* Switch to side-by-side layout on tablets and up */
+@media (min-width: 768px) {
+  .two-col {
+    flex-direction: row; /* Place the columns next to each other */
+  }
+  .two-col > * {
+    flex: 1; /* Give each column equal width */
+  }
+  .two-col.reverse {
+    flex-direction: row-reverse; /* Swap the order of the columns */
+  }
+}
+
+/* ---------------------------------------------
+   HOMEPAGE FEATURE IMAGE
+   Fixed-size image used inside two-column sections
+---------------------------------------------- */
+#homeimg{
+  height: 300px; /* Set a fixed height for the image */
+  width: 600px; /* Use a wide cinematic width */
+  border-radius: 15px; /* Round the image corners */
+}
+
+/* ---------------------------------------------
+   CARD
+   Elevated panel used for forms, stats, and content blocks
+---------------------------------------------- */
+.card {
+  background: var(--color-surface); /* Use the surface color for the card */
+  border: 1px solid var(--color-border); /* Draw a light border around the card */
+  border-radius: var(--radius-md); /* Round the card corners */
+  padding: var(--spacing-lg); /* Add inner spacing inside the card */
+  box-shadow: var(--shadow-sm); /* Apply a subtle drop shadow */
+  transition: box-shadow var(--transition-base); /* Animate the shadow on hover/focus */
+}
+
+.card:hover, .card:focus-within {
+  box-shadow: var(--shadow-md); /* Use a deeper shadow on hover or focus */
+}
+
+/* ---------------------------------------------
+   STATISTICS GRID
+   Responsive grid for dashboard stat cards
+---------------------------------------------- */
+.stat-grid {
+  display: grid; /* Use CSS grid for layout */
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Create flexible columns */
+  gap: var(--spacing-lg); /* Add space between stat cards */
+  margin-bottom: var(--spacing-2xl); /* Add space below the grid */
+}
+
+.stat-card {
+  background: var(--color-surface); /* Use surface color for each stat card */
+  border: 1px solid var(--color-border); /* Draw a light border */
+  border-radius: var(--radius-md); /* Round card corners */
+  padding: var(--spacing-lg); /* Add inner spacing */
+  box-shadow: var(--shadow-sm); /* Add a subtle shadow */
+}
+
+.stat-value {
+  font-size: 2rem; /* Make the number large */
+  font-weight: 700; /* Make the number bold */
+  color: var(--color-primary-gold); /* Color the number with brand gold */
+  font-family: var(--font-serif); /* Use the serif font for emphasis */
+}
+
+/* ---------------------------------------------
+   PROGRESS BAR
+   Visual indicator for goal progress
+---------------------------------------------- */
+.progress-bar {
+  height: 24px; /* Set a fixed bar height */
+  background: var(--color-border); /* Use a light background for the track */
+  border-radius: var(--radius-sm); /* Round the bar corners */
+  overflow: hidden; /* Clip the fill inside the bar */
+  margin-top: var(--spacing-sm); /* Add space above the bar */
+}
+
+.progress-fill {
+  height: 100%; /* Make the fill match the bar height */
+  background: linear-gradient(to right, var(--color-primary-gold-300), var(--color-primary-gold)); /* Use a brand gradient */
+  transition: width var(--transition-base); /* Animate the width when progress changes */
+}
+
+/* ---------------------------------------------
+   BUTTONS
+   Primary, secondary, and danger styles
+---------------------------------------------- */
+.btn {
+  display: inline-block; /* Let the button sit inline with block features */
+  padding: var(--spacing-sm) var(--spacing-lg); /* Add comfortable padding */
+  background: var(--color-primary-gold); /* Use gold for the primary button */
+  color: var(--color-ink); /* Use dark text for contrast */
+  border: none; /* Remove default borders */
+  border-radius: var(--radius-sm); /* Round the button corners */
+  font-weight: 600; /* Make button text bold */
+  cursor: pointer; /* Show a pointer cursor on hover */
+  transition: background var(--transition-fast); /* Animate color change on hover */
+}
+
+.btn:hover, .btn:focus {
+  background: var(--color-primary-gold-600); /* Darken the button on hover/focus */
+  text-decoration: none; /* Keep the text without underline */
+}
+
+.btn-secondary {
+  background: var(--color-surface); /* Use surface color for secondary buttons */
+  border: 1px solid var(--color-border); /* Add a border for definition */
+}
+
+.btn-danger {
+  background: var(--color-error); /* Use red for danger actions */
+  color: white; /* Use white text on the red background */
+}
+
+/* ---------------------------------------------
+   FORM ELEMENTS
+   Spacing, labels, inputs, and error messages
+---------------------------------------------- */
+.form-group {
+  margin-bottom: var(--spacing-lg); /* Add space below each field group */
+}
+
+.form-label {
+  display: block; /* Make the label take the full width */
+  margin-bottom: var(--spacing-xs); /* Add a small gap under the label */
+  font-weight: 600; /* Make the label text bold */
+}
+
+.form-input, .form-select, .form-textarea {
+  width: 100%; /* Make inputs expand to the container width */
+  padding: var(--spacing-sm); /* Add inner padding for comfort */
+  border: 1px solid var(--color-border); /* Draw a light border */
+  border-radius: var(--radius-sm); /* Round the input corners */
+  background: var(--color-bg); /* Use the page background inside inputs */
+}
+
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  border-color: var(--color-primary-gold); /* Color the border gold on focus */
+}
+
+.form-error {
+  color: var(--color-error); /* Use red text for error messages */
+  font-size: 0.875rem; /* Make error text slightly smaller */
+  margin-top: var(--spacing-xs); /* Add a small gap above the error text */
+}
+
+.mt-lg{
+  text-align: center; /* Center the heading text */
+}
+
+.form-input.invalid {
+  border-color: var(--color-error); /* Show a red border when validation fails */
+}
+
+/* ---------------------------------------------
+   TABLE
+   Sortable records table with clickable headers
+---------------------------------------------- */
+.table-container {
+  overflow-x: auto; /* Allow horizontal scroll on small screens */
+}
+
+.table {
+  width: 100%; /* Make the table use the full container width */
+  border-collapse: collapse; /* Remove the space between table cells */
+  background: var(--color-surface); /* Use the surface color for the table */
+}
+
+.table th, .table td {
+  padding: var(--spacing-sm) var(--spacing-md); /* Add padding inside cells */
+  text-align: left; /* Align cell text to the left */
+  border-bottom: 1px solid var(--color-border); /* Draw a line under each row */
+}
+
+.table th {
+  font-weight: 600; /* Make header text bold */
+  background: var(--color-bg); /* Use the page background for the header row */
+  cursor: pointer; /* Show that headers are clickable for sorting */
+  user-select: none; /* Prevent selecting text while clicking headers */
+}
+
+.table th:hover {
+  background: var(--color-border); /* Highlight a header on hover */
+}
+
+.table th::after {
+  content: ' ↕'; /* Show a neutral sort indicator */
+  opacity: 0.3; /* Make the indicator light when not sorted */
+}
+
+.table th.sort-asc::after {
+  content: ' ↑'; /* Show an up arrow when sorted ascending */
+  opacity: 1; /* Make the indicator fully visible */
+}
+
+.table th.sort-desc::after {
+  content: ' ↓'; /* Show a down arrow when sorted descending */
+  opacity: 1; /* Make the indicator fully visible */
+}
+
+/* ---------------------------------------------
+   MARK
+   Highlighted text for search matches
+---------------------------------------------- */
+mark {
+  background: var(--color-primary-gold-300); /* Use light gold for highlights */
+  color: var(--color-ink); /* Keep dark text on the highlight */
+  padding: 0 2px; /* Add a small side padding around the text */
+}
+
+/* ---------------------------------------------
+   MODAL
+   Centered dialog with dark background overlay
+---------------------------------------------- */
+.modal {
+  position: fixed; /* Keep the modal fixed over the page */
+  inset: 0; /* Stretch the overlay to cover the viewport */
+  background: rgba(0,0,0,0.7); /* Use a dark semi-transparent backdrop */
+  display: flex; /* Use flexbox to center the dialog */
+  align-items: center; justify-content: center; /* Center the dialog both ways */
+  z-index: 100; /* Keep the modal above other content */
+  padding: var(--spacing-md); /* Add padding around the dialog on small screens */
+}
+
+.modal-content {
+  background: var(--color-surface); /* Use surface color for the dialog */
+  padding: var(--spacing-xl); /* Add inner padding inside the dialog */
+  border-radius: var(--radius-md); /* Round the dialog corners */
+  max-width: 500px; /* Limit the dialog width */
+  width: 100%; /* Let the dialog fill available width up to the max */
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3); /* Add a deep shadow under the dialog */
+}
+
+.modal-actions {
+  display: flex; /* Use flexbox for the button row */
+  gap: var(--spacing-md); /* Add space between the buttons */
+  justify-content: flex-end; /* Align the buttons to the right */
+  margin-top: var(--spacing-lg); /* Add space above the button row */
+}
+
+/* ---------------------------------------------
+   FOOTER
+   Site-wide footer with multiple columns
+---------------------------------------------- */
+.footer {
+  background: var(--color-surface); /* Use the surface color for the footer */
+  border-top: 1px solid var(--color-border); /* Draw a line at the top of the footer */
+  padding: var(--spacing-2xl) var(--spacing-md); /* Add vertical and side padding */
+  margin-top: var(--spacing-2xl); /* Add space above the footer */
+  border-radius: 20px; /* Round the outer edges of the footer */
+}
+
+.footer-content {
+  max-width: 1200px; /* Limit the footer content width */
+  margin: 0 auto; /* Center the footer content */
+  display: flex; /* Use flexbox for the footer columns */
+  flex-direction: column; /* Stack columns on mobile */
+  gap: var(--spacing-lg); /* Add space between columns */
+}
+
+/* Make social media icons smaller */
+.footer-social svg {
+  width: 28px; /* Set the icon width */
+  height: 28px; /* Set the icon height */
+}
+
+/* Switch to row layout on desktop */
+@media (min-width: 768px) {
+  .footer-content {
+    flex-direction: row; /* Place columns side by side */
+    justify-content: space-between; /* Spread columns across the row */
+  }
+}
+
+/* ---------------------------------------------
+   SEARCH CONTROLS
+   Search input and options that stack on mobile
+---------------------------------------------- */
+.search-controls {
+  display: flex; /* Use flexbox for the controls */
+  flex-direction: column; /* Stack inputs on small screens */
+  gap: var(--spacing-md); /* Add space between controls */
+  margin-bottom: var(--spacing-lg); /* Add space below the group */
+}
+
+@media (min-width: 768px) {
+  .search-controls {
+    flex-direction: row; /* Place controls in a row on desktop */
+    align-items: flex-end; /* Align controls to the bottom edge */
+  }
+}
+
+.checkbox-group {
+  display: flex; /* Use flexbox for the checkbox and label */
+  align-items: center; /* Center them vertically */
+  gap: var(--spacing-sm); /* Add space between the checkbox and its label */
+}
+
+/* ---------------------------------------------
+   RECORDS GRID
+   Card layout for records, responsive on desktop
+---------------------------------------------- */
+.records-grid {
+  display: grid; /* Use CSS grid for the cards */
+  gap: var(--spacing-lg); /* Add space between cards */
+}
+
+@media (min-width: 768px) {
+  .records-grid {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Create flexible columns */
+  }
+}
+
+.record-card {
+  background: var(--color-surface); /* Use surface color for record cards */
+  border: 1px solid var(--color-border); /* Draw a light border */
+  border-radius: var(--radius-md); /* Round the card corners */
+  padding: var(--spacing-lg); /* Add inner padding */
+}
+
+.record-actions {
+  display: flex; /* Use flexbox for action buttons */
+  gap: var(--spacing-sm); /* Add space between buttons */
+  margin-top: var(--spacing-md); /* Add space above the actions */
+}
+
+/* ---------------------------------------------
+   THEME SWATCHES
+   Small color buttons to preview and select themes
+---------------------------------------------- */
+.theme-swatches {
+  display: flex; /* Use flexbox for the swatches */
+  gap: var(--spacing-sm); /* Add space between swatches */
+  flex-wrap: wrap; /* Allow swatches to wrap on small screens */
+}
+
+.swatch {
+  width: 48px; /* Set the swatch width */
+  height: 48px; /* Set the swatch height */
+  border-radius: var(--radius-sm); /* Round the swatch corners */
+  border: 2px solid var(--color-border); /* Draw a border around the swatch */
+  cursor: pointer; /* Show pointer cursor */
+  transition: transform var(--transition-fast); /* Animate the hover scale */
+}
+
+.swatch:hover, .swatch:focus {
+  transform: scale(1.1); /* Enlarge the swatch slightly on hover/focus */
+}
+
+.swatch.active {
+  border-color: var(--color-primary-gold); /* Use gold when a swatch is active */
+  border-width: 3px; /* Make the active border thicker */
+}
+
+/* ---------------------------------------------
+   CATEGORIES GRID
+   Four image cards in a 2×2 grid with a text strip
+---------------------------------------------- */
+.categories-grid{
+  --gap: 1rem; /* Define a shared gap size */
+  display: grid; /* Use grid for the layout */
+  grid-template-columns: 1fr 1fr; /* Create two equal columns */
+  gap: var(--gap); /* Add space between the cards */
+  padding: 1rem; /* Add inner padding for the grid */
+  background: var(--bg); /* Use the page background color */
+  max-width: 1200px; /* Limit grid width */
+  margin-inline: auto; /* Center the grid block */
+  padding-inline: clamp(16px, 5vw, 48px); /* Use responsive side padding */
+  justify-content: center; /* Center the grid tracks */
+  box-sizing: border-box; /* Include padding in the overall width */
+}
+
+/* Category card with background image */
+.categories-grid .card{
+  position: relative; /* Prepare for an overlay at the bottom */
+  border-radius: 16px; /* Round the card corners */
+  min-height: clamp(180px, 28vw, 400px); /* Keep height responsive with limits */
+  overflow: hidden; /* Hide image overflow */
+  background: #ddd; /* Show a gray fallback if the image fails */
+  background-image: var(--bg); /* Read the image from the inline --bg variable */
+  background-size: cover; /* Fill the card without stretching the image */
+  background-position: center; /* Keep the image centered */
+  background-repeat: no-repeat; /* Avoid repeating the image */
+  display: block; /* Let a link wrap the whole card if needed */
+  text-decoration: none; /* Keep links without underlines */
+  box-shadow: 3px 8px 20px rgba(0,0,0,.12); /* Add a subtle shadow */
+  transition: transform .25s ease, box-shadow .25s ease, filter .25s ease; /* Animate hover effects */
+  isolation: isolate; /* Create a stacking context for the overlay */
+}
+
+/* Text overlay at the bottom of the card */
+.categories-grid .card .card-content{
+  position:absolute; /* Position the content over the image */
+  left: 0; right: 0; bottom: 0; /* Stretch across the bottom edge */
+  background:
+    linear-gradient( to top, rgba(0,0,0,.60) 0%, rgba(0,0,0,.36) 60%, rgba(0,0,0,0) 100% ), /* Darken the bottom so text is readable */
+    color-mix(in srgb, rgba(255,255,255,.06) 100%, transparent); /* Add a soft white tint */
+  backdrop-filter: blur(6px); /* Blur the image behind the text strip */
+  -webkit-backdrop-filter: blur(6px); /* Enable blur on Safari */
+  padding: 14px 16px; /* Add padding inside the strip */
+  color: #fff; /* Use white text for contrast */
+  text-align: left; /* Align text to the left */
+  display: grid; /* Use grid to space heading and text */
+  gap: 6px; /* Add a small gap between items */
+  z-index: 1; /* Place the content above the image */
+}
+
+.categories-grid .card h2{
+  margin: 0; /* Remove default heading margin */
+  font-size: clamp(1.2rem, 2.4vw, 1.25rem); /* Keep the heading size responsive */
+  font-weight:700; /* Make the heading bold */
+  color:#E0C874; /* Color the heading with brand gold */
+  text-shadow: 0 2px 6px rgba(0,0,0,.45); /* Add shadow for contrast */
+}
+
+.categories-grid .card p{
+  margin:0; /* Remove default paragraph margin */
+  color: rgba(255,255,255,.95); /* Use nearly white text for body copy */
+  font-size: clamp(1rem, 2vw, .95rem); /* Keep the paragraph size responsive */
+}
+
+/* Hover and focus effects with gold/maroon glow */
+.categories-grid .card:hover,
+.categories-grid .card:focus-within{
+  transform: translateY(-2px); /* Lift the card slightly */
+  box-shadow:
+    0 16px 40px rgba(0,0,0,.22), /* Add a deeper shadow */
+    0 0 0 2px color-mix(in srgb, var(--gold) 70%, transparent), /* Draw a gold outline */
+    0 0 30px color-mix(in srgb, var(--maroon) 75%, transparent); /* Add a maroon glow */
+  filter: none; /* Remove any visual filters */
+}
+
+/* Keyboard focus outline for accessibility */
+.categories-grid .card :where(a, button):focus-visible{
+  outline: 3px solid var(--gold); /* Draw a gold focus ring */
+  outline-offset: 2px; /* Separate the ring from the element */
+}
+
+.categories-head{
+  text-align: center; /* Center the section heading */
+}
+
+.categories-grid .meta{
+  display: flex; gap: 12px; align-items: center; opacity: .95; /* Lay out small metadata items in a row */
+}
+
+/* Stack to a single column on small screens */
+@media (max-width: 520px){
+  .categories-grid{
+    grid-template-columns: 1fr; /* Use one column on mobile */
+  }
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce){
+  .categories-grid .card{ transition: none; } /* Turn off transitions */
+}
+
+/* ---------------------------------------------
+   PARTNERS GRID
+   Cards for partner organization
+---------------------------------------------- */
+.partners-grid .card {
+  padding: 20px; /* Add extra inner space for logos */
+  display: grid; place-items: center; /* Center the content in both directions */
+}
+
+.partner {
+  display: grid; gap: 8px; /* Stack the name, and role with small gaps */
+  justify-items: center; /* Center items horizontally */
+  margin: 0; /* Remove default figure margins */
+}
+
+.partner-name {
+  font-weight: 700; /* Make the partner name bold */
+  color: var(--color-ink); /* Use the main text color */
+  text-wrap: balance; /* Keep long names nicely wrapped */
+}
+
+.partner-role {
+  margin: 0; /* Remove default paragraph margin */
+  font-size: .9rem; /* Use a smaller text size */
+  color: var(--color-muted); /* Use the muted text color */
+}
+
+/* ---------------------------------------------
+   LIBRARY SECTION
+   Category tabs and a grid of small book cards
+---------------------------------------------- */
+.library-tabs {
+  display: flex; /* Use flexbox for the tabs */
+  gap: var(--spacing-sm); /* Add space between tabs */
+  margin-bottom: var(--spacing-lg); /* Add space under the tab row */
+  flex-wrap: wrap; /* Wrap tabs on small screens */
+}
+
+.tab-btn {
+  padding: var(--spacing-sm) var(--spacing-lg); /* Add padding around each tab */
+  background: var(--color-surface); /* Use the surface color for tabs */
+  border: 1px solid var(--color-border); /* Add a light border */
+  border-radius: var(--radius-sm); /* Round the tab corners */
+  cursor: pointer; /* Show a pointer cursor */
+  transition: all var(--transition-fast); /* Animate small changes */
+  font-weight: 500; /* Use medium font weight */
+}
+
+.tab-btn:hover, .tab-btn:focus {
+  background: var(--color-border); /* Highlight the tab on hover/focus */
+}
+
+.tab-btn.active {
+  background: var(--color-primary-gold); /* Use gold for the active tab */
+  color: var(--color-ink); /* Use dark text for contrast */
+  border-color: var(--color-primary-gold); /* Match the border to the gold */
+  font-weight: 600; /* Make the active tab bold */
+}
+
+.library-grid {
+  display: grid; /* Use grid for the book cards */
+  gap: var(--spacing-lg); /* Add space between cards */
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Create flexible columns */
+}
+
+.library-card {
+  background: var(--color-surface); /* Use surface color for the card */
+  border: 1px solid var(--color-border); /* Draw a border around the card */
+  border-radius: var(--radius-md); /* Round the card corners */
+  padding: var(--spacing-lg); /* Add inner spacing */
+  display: flex; /* Use flexbox for content */
+  flex-direction: column; /* Stack card content vertically */
+  gap: var(--spacing-sm); /* Add small gaps between items */
+}
+
+.library-card h3 {
+  margin: 0; /* Remove default heading margin */
+  font-size: 1.1rem; /* Make the title slightly larger */
+  color: var(--color-ink); /* Use main text color */
+}
+
+.library-card .btn {
+  margin-top: auto; /* Push the button to the bottom of the card */
+}
+
+/* ---------------------------------------------
+   ABOUT SECTION
+   Full-width colored panel with text on the left and an image on the right
+---------------------------------------------- */
+.about-section {
+  padding: 0; /* Remove outer section padding for a full-width look */
+  max-width: none; /* Allow the section to span the full width */
+}
+
+.about-panel {
+  width: 100%; /* Make the panel full width */
+  border-radius: 0; /* Keep panel edges square */
+  padding: 2rem; /* Add inner spacing inside the panel */
+  background: var(--color-surface); /* Use the themed surface color */
+  color: var(--color-ink); /* Use the themed text color */
+  display: grid; /* Use grid to split the panel */
+  grid-template-columns: 1fr 1fr; /* Split into two equal columns */
+  gap: 0; /* Remove the gap between the two columns */
+}
+
+.about-right img {
+  width: 100%; /* Make the image fill its column width */
+  height: 100%; /* Make the image fill its column height */
+  object-fit: cover; /* Cover the area without distortion */
+  border-radius: 12px; /* Round the image corners */
+}
+
+.about-left,
+.about-right {
+  padding: clamp(40px, 4vw, 70px); /* Add generous, responsive inner padding */
+}
+
+.about-right {
+  display: flex; /* Use flexbox to center the image */
+  justify-content: center; /* Center the image horizontally */
+  align-items: center; /* Center the image vertically */
+}

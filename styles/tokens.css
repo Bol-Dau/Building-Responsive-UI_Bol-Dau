@@ -1,0 +1,101 @@
+/* ---------------------------------------------
+   TOKENS.CSS - Design System Variables
+   This file defines reusable values for colors, spacing, fonts, shadows, and timing.
+   Light theme is the default. Dark theme activates with [data-theme="dark"].
+---------------------------------------------- */
+
+:root {
+  /* ---------------------------------------------
+     BRAND COLORS: Gold and Maroon palette
+  ---------------------------------------------- */
+  --color-primary-gold: #C9A227; /* Main gold used for buttons and accents */
+  --color-primary-gold-600: #B38F1E; /* Darker gold used on hover states */
+  --color-primary-gold-300: #E0C874; /* Lighter gold used for highlights */
+  --color-primary-maroon: #7B1E1E; /* Main maroon used for strong accents */
+  --color-primary-maroon-700: #5E1414; /* Darker maroon used for depth and contrast */
+  
+  /* ---------------------------------------------
+     SURFACE COLORS: Backgrounds and text
+  ---------------------------------------------- */
+  --color-bg: #F9F6EF; /* Page background color */
+  --color-surface: #F2ECE1; /* Card and panel background color */
+  --color-ink: #1F1B16; /* Main text color */
+  --color-muted: #6B6258; /* Secondary text color */
+  --color-border: #E2D9C8; /* Lines and borders color */
+  
+  /* ---------------------------------------------
+     UTILITY COLORS: Focus, error, success
+  ---------------------------------------------- */
+  --color-focus: #0066CC; /* Focus outline color for accessibility */
+  --color-error: #C41E3A; /* Error color for validation and alerts */
+  --color-success: #2D7A3E; /* Success color for positive states */
+  
+  /* ---------------------------------------------
+     LEGACY TOKENS: Kept for backward compatibility
+     (Aliases that map to current colors)
+  ---------------------------------------------- */
+  --gold: #C9A227; /* Legacy alias for primary gold */
+  --maroon: #E0C874; /* Legacy alias kept for older code (light gold value) */
+  --bg: #F9F6EF; /* Legacy alias for background */
+  --ink: #1F1B16; /* Legacy alias for text color */
+  
+  /* ---------------------------------------------
+     TYPOGRAPHY: Font families
+  ---------------------------------------------- */
+  --font-serif: Georgia, 'Times New Roman', serif; /* Serif font for headings */
+  --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;  /* Sans-serif font for body text */
+  
+  /* ---------------------------------------------
+     SPACING: Consistent spacing scale
+     xs=4px, sm=8px, md=16px, lg=24px, xl=32px, 2xl=48px
+  ---------------------------------------------- */
+  --spacing-xs: 0.25rem; /* Extra small space (4px) */
+  --spacing-sm: 0.5rem;  /* Small space (8px) */
+  --spacing-md: 1rem; /* Medium space (16px) */
+  --spacing-lg: 1.5rem; /* Large space (24px) */
+  --spacing-xl: 2rem; /* Extra large space (32px) */
+  --spacing-2xl: 3rem; /* Double extra large space (48px) */
+  
+  /* ---------------------------------------------
+     BORDER RADIUS: Rounded corners
+  ---------------------------------------------- */
+  --radius-sm: 4px; /* Small corner radius (buttons and small elements) */
+  --radius-md: 8px; /* Medium corner radius (cards and panels) */
+  
+  /* ---------------------------------------------
+     SHADOWS: Elevation and depth
+  ---------------------------------------------- */
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.12); /* Small shadow for subtle lift */
+  --shadow-md: 0 4px 6px rgba(0,0,0,0.1); /* Medium shadow for cards and modals */
+  
+  /* ---------------------------------------------
+     TRANSITIONS: Animation timing
+  ---------------------------------------------- */
+  --transition-fast: 150ms ease; /* Quick timing for hover effects */
+  --transition-base: 250ms ease; /* Default timing for most transitions */
+}
+
+/* ---------------------------------------------
+   DARK THEME: Values used when the site is in dark mode
+   Triggered by [data-theme="dark"] on the html (or root) element
+---------------------------------------------- */
+[data-theme="dark"] {
+  --color-bg: #010314fb; /* Dark page background */
+  --color-surface: #060313;  /* Dark card and panel background */
+  --color-ink: #F3EDE2; /* Light text on dark surfaces */
+  --color-muted: #C7BBAA; /* Muted text in dark mode */
+  --color-border: #2A2520; /* Soft borders in dark mode */
+  --color-primary-gold: #D4AF37; /* Gold adjusted to pop on dark backgrounds */
+  --color-primary-maroon: #8A1C1C; /* Maroon adjusted for dark mode contrast */
+}
+
+/* ---------------------------------------------
+   REDUCED MOTION: Respect user preference to limit animation
+---------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important; /* Make animations effectively instant */
+    animation-iteration-count: 1 !important; /* Run animations only once */
+    transition-duration: 0.01ms !important; /* Make transitions effectively instant */
+  }
+}

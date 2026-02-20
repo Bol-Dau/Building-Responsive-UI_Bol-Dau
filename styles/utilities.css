@@ -1,0 +1,69 @@
+/* ---------------------------------------------
+   UTILITIES.CSS - Helper Classes
+   Small, single-purpose classes you can reuse anywhere.
+   Use these to quickly control spacing, layout, alignment, and visibility.
+---------------------------------------------- */
+
+/* ---------------------------------------------
+   CONTAINER: Center content with a readable width
+---------------------------------------------- */
+.container {
+  max-width: 1200px; /* Limit the content width so lines are easy to read */
+  margin: 0 auto; /* Center the container on the page */
+  padding: 0 var(--spacing-md); /* Add side padding on small and medium screens */
+}
+
+/* ---------------------------------------------
+   TEXT UTILITIES: Quick text helpers
+---------------------------------------------- */
+.text-center { text-align: center; } /* Center the text horizontally */
+.text-muted { color: var(--color-muted); } /* Use the muted color for secondary text */
+.text-error { color: var(--color-error); } /* Color error text in red */
+.text-success { color: var(--color-success); } /* Color success text in green */
+
+/* ---------------------------------------------
+   MARGIN TOP: Add space above an element
+---------------------------------------------- */
+.mt-sm { margin-top: var(--spacing-sm); } /* Add a small top margin (8px) */
+.mt-md { margin-top: var(--spacing-md); } /* Add a medium top margin (16px) */
+.mt-lg { margin-top: var(--spacing-lg); } /* Add a large top margin (24px) */
+.mt-xl { margin-top: var(--spacing-xl); } /* Add an extra-large top margin (32px) */
+
+/* ---------------------------------------------
+   MARGIN BOTTOM: Add space below an element
+---------------------------------------------- */
+.mb-sm { margin-bottom: var(--spacing-sm); } /* Add a small bottom margin (8px) */
+.mb-md { margin-bottom: var(--spacing-md); } /* Add a medium bottom margin (16px) */
+.mb-lg { margin-bottom: var(--spacing-lg); } /* Add a large bottom margin (24px) */
+.mb-xl { margin-bottom: var(--spacing-xl); } /* Add an extra-large bottom margin (32px) */
+
+/* ---------------------------------------------
+   VISIBILITY: Show or hide elements
+---------------------------------------------- */
+.hidden { display: none; } /* Hide the element completely */
+
+/* ---------------------------------------------
+   FLEXBOX UTILITIES: Quick layout helpers
+---------------------------------------------- */
+.flex { display: flex; } /* Turn on flexbox layout */
+.flex-col { flex-direction: column; } /* Stack flex items vertically */
+.flex-wrap { flex-wrap: wrap; } /* Allow items to wrap to the next line */
+.items-center { align-items: center; } /* Center items vertically in the flex row */
+.justify-center { justify-content: center; } /* Center items horizontally in the flex row */
+.justify-between { justify-content: space-between; } /* Push items to the edges with space in between */
+.gap-sm { gap: var(--spacing-sm); } /* Add a small gap between flex/grid items (8px) */
+.gap-md { gap: var(--spacing-md); } /* Add a medium gap between items (16px) */
+.gap-lg { gap: var(--spacing-lg); } /* Add a large gap between items (24px) */
+
+/* ---------------------------------------------
+   RESPONSIVE VISIBILITY: Show/hide at breakpoints
+---------------------------------------------- */
+/* Hide on mobile screens (below 768px) */
+@media (max-width: 767px) {
+  .hide-mobile { display: none; } /* Do not show this element on mobile */
+}
+
+/* Hide on desktop screens (768px and above) */
+@media (min-width: 768px) {
+  .hide-desktop { display: none; } /* Do not show this element on desktop */
+}
