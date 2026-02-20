@@ -1,0 +1,322 @@
+[
+  {
+    "id": "lib_0001",
+    "title": "The Omnivore's Dilemma",
+    "author": "Michael Pollan",
+    "pages": 450,
+    "tag": "Agriculture",
+    "dateAdded": "2024-01-15"
+  },
+  {
+    "id": "lib_0002",
+    "title": "Sustainable Agriculture Handbook",
+    "author": "Jane Smith",
+    "pages": 320,
+    "tag": "Agriculture",
+    "dateAdded": "2024-01-16"
+  },
+  {
+    "id": "lib_0003",
+    "title": "Permaculture Design Manual",
+    "author": "Bill Mollison",
+    "pages": 576,
+    "tag": "Agriculture",
+    "dateAdded": "2024-01-17"
+  },
+  {
+    "id": "lib_0004",
+    "title": "The Soil Will Save Us",
+    "author": "Kristin Ohlson",
+    "pages": 242,
+    "tag": "Agriculture",
+    "dateAdded": "2024-01-18"
+  },
+  {
+    "id": "lib_0005",
+    "title": "Farming While Black",
+    "author": "Leah Penniman",
+    "pages": 368,
+    "tag": "Agriculture",
+    "dateAdded": "2024-01-19"
+  },
+  {
+    "id": "lib_0006",
+    "title": "The Market Gardener",
+    "author": "Jean-Martin Fortier",
+    "pages": 224,
+    "tag": "Agriculture",
+    "dateAdded": "2024-01-20"
+  },
+  {
+    "id": "lib_0007",
+    "title": "Teaming with Microbes",
+    "author": "Jeff Lowenfels",
+    "pages": 220,
+    "tag": "Agriculture",
+    "dateAdded": "2024-01-21"
+  },
+  {
+    "id": "lib_0008",
+    "title": "The New Organic Grower",
+    "author": "Eliot Coleman",
+    "pages": 340,
+    "tag": "Agriculture",
+    "dateAdded": "2024-01-22"
+  },
+  {
+    "id": "lib_0009",
+    "title": "Gaia's Garden",
+    "author": "Toby Hemenway",
+    "pages": 312,
+    "tag": "Agriculture",
+    "dateAdded": "2024-01-23"
+  },
+  {
+    "id": "lib_0010",
+    "title": "The One-Straw Revolution",
+    "author": "Masanobu Fukuoka",
+    "pages": 181,
+    "tag": "Agriculture",
+    "dateAdded": "2024-01-24"
+  },
+  {
+    "id": "lib_0011",
+    "title": "The Story of Art",
+    "author": "Ernst Gombrich",
+    "pages": 688,
+    "tag": "Arts & Culture",
+    "dateAdded": "2024-02-01"
+  },
+  {
+    "id": "lib_0012",
+    "title": "Ways of Seeing",
+    "author": "John Berger",
+    "pages": 176,
+    "tag": "Arts & Culture",
+    "dateAdded": "2024-02-02"
+  },
+  {
+    "id": "lib_0013",
+    "title": "Color Theory for Artists",
+    "author": "Maria Rodriguez",
+    "pages": 240,
+    "tag": "Arts & Culture",
+    "dateAdded": "2024-02-03"
+  },
+  {
+    "id": "lib_0014",
+    "title": "The Art Spirit",
+    "author": "Robert Henri",
+    "pages": 288,
+    "tag": "Arts & Culture",
+    "dateAdded": "2024-02-04"
+  },
+  {
+    "id": "lib_0015",
+    "title": "Steal Like an Artist",
+    "author": "Austin Kleon",
+    "pages": 160,
+    "tag": "Arts & Culture",
+    "dateAdded": "2024-02-05"
+  },
+  {
+    "id": "lib_0016",
+    "title": "The Creative Habit",
+    "author": "Twyla Tharp",
+    "pages": 256,
+    "tag": "Arts & Culture",
+    "dateAdded": "2024-02-06"
+  },
+  {
+    "id": "lib_0017",
+    "title": "Drawing on the Right Side of the Brain",
+    "author": "Betty Edwards",
+    "pages": 291,
+    "tag": "Arts & Culture",
+    "dateAdded": "2024-02-07"
+  },
+  {
+    "id": "lib_0018",
+    "title": "The War of Art",
+    "author": "Steven Pressfield",
+    "pages": 190,
+    "tag": "Arts & Culture",
+    "dateAdded": "2024-02-08"
+  },
+  {
+    "id": "lib_0019",
+    "title": "Art & Fear",
+    "author": "David Bayles",
+    "pages": 122,
+    "tag": "Arts & Culture",
+    "dateAdded": "2024-02-09"
+  },
+  {
+    "id": "lib_0020",
+    "title": "The Artist's Way",
+    "author": "Julia Cameron",
+    "pages": 272,
+    "tag": "Arts & Culture",
+    "dateAdded": "2024-02-10"
+  },
+  {
+    "id": "lib_0021",
+    "title": "Zero to One",
+    "author": "Peter Thiel",
+    "pages": 224,
+    "tag": "Entrepreneurship",
+    "dateAdded": "2024-03-01"
+  },
+  {
+    "id": "lib_0022",
+    "title": "The Lean Startup",
+    "author": "Eric Ries",
+    "pages": 336,
+    "tag": "Entrepreneurship",
+    "dateAdded": "2024-03-02"
+  },
+  {
+    "id": "lib_0023",
+    "title": "The Innovator's Dilemma",
+    "author": "Clayton Christensen",
+    "pages": 288,
+    "tag": "Entrepreneurship",
+    "dateAdded": "2024-03-03"
+  },
+  {
+    "id": "lib_0024",
+    "title": "The Hard Thing About Hard Things",
+    "author": "Ben Horowitz",
+    "pages": 304,
+    "tag": "Entrepreneurship",
+    "dateAdded": "2024-03-04"
+  },
+  {
+    "id": "lib_0025",
+    "title": "The E-Myth Revisited",
+    "author": "Michael Gerber",
+    "pages": 269,
+    "tag": "Entrepreneurship",
+    "dateAdded": "2024-03-05"
+  },
+  {
+    "id": "lib_0026",
+    "title": "Good to Great",
+    "author": "Jim Collins",
+    "pages": 300,
+    "tag": "Entrepreneurship",
+    "dateAdded": "2024-03-06"
+  },
+  {
+    "id": "lib_0027",
+    "title": "The $100 Startup",
+    "author": "Chris Guillebeau",
+    "pages": 285,
+    "tag": "Entrepreneurship",
+    "dateAdded": "2024-03-07"
+  },
+  {
+    "id": "lib_0028",
+    "title": "Rework",
+    "author": "Jason Fried",
+    "pages": 279,
+    "tag": "Entrepreneurship",
+    "dateAdded": "2024-03-08"
+  },
+  {
+    "id": "lib_0029",
+    "title": "The 4-Hour Workweek",
+    "author": "Tim Ferriss",
+    "pages": 396,
+    "tag": "Entrepreneurship",
+    "dateAdded": "2024-03-09"
+  },
+  {
+    "id": "lib_0030",
+    "title": "Start with Why",
+    "author": "Simon Sinek",
+    "pages": 256,
+    "tag": "Entrepreneurship",
+    "dateAdded": "2024-03-10"
+  },
+  {
+    "id": "lib_0031",
+    "title": "Sapiens",
+    "author": "Yuval Noah Harari",
+    "pages": 443,
+    "tag": "Social Sciences",
+    "dateAdded": "2024-04-01"
+  },
+  {
+    "id": "lib_0032",
+    "title": "Thinking Fast and Slow",
+    "author": "Daniel Kahneman",
+    "pages": 499,
+    "tag": "Social Sciences",
+    "dateAdded": "2024-04-02"
+  },
+  {
+    "id": "lib_0033",
+    "title": "The Tipping Point",
+    "author": "Malcolm Gladwell",
+    "pages": 301,
+    "tag": "Social Sciences",
+    "dateAdded": "2024-04-03"
+  },
+  {
+    "id": "lib_0034",
+    "title": "Freakonomics",
+    "author": "Steven Levitt",
+    "pages": 336,
+    "tag": "Social Sciences",
+    "dateAdded": "2024-04-04"
+  },
+  {
+    "id": "lib_0035",
+    "title": "Guns Germs and Steel",
+    "author": "Jared Diamond",
+    "pages": 528,
+    "tag": "Social Sciences",
+    "dateAdded": "2024-04-05"
+  },
+  {
+    "id": "lib_0036",
+    "title": "The Righteous Mind",
+    "author": "Jonathan Haidt",
+    "pages": 419,
+    "tag": "Social Sciences",
+    "dateAdded": "2024-04-06"
+  },
+  {
+    "id": "lib_0037",
+    "title": "Predictably Irrational",
+    "author": "Dan Ariely",
+    "pages": 384,
+    "tag": "Social Sciences",
+    "dateAdded": "2024-04-07"
+  },
+  {
+    "id": "lib_0038",
+    "title": "The Power of Habit",
+    "author": "Charles Duhigg",
+    "pages": 371,
+    "tag": "Social Sciences",
+    "dateAdded": "2024-04-08"
+  },
+  {
+    "id": "lib_0039",
+    "title": "Influence",
+    "author": "Robert Cialdini",
+    "pages": 320,
+    "tag": "Social Sciences",
+    "dateAdded": "2024-04-09"
+  },
+  {
+    "id": "lib_0040",
+    "title": "Nudge",
+    "author": "Richard Thaler",
+    "pages": 312,
+    "tag": "Social Sciences",
+    "dateAdded": "2024-04-10"
+  }
+]

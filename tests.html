@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- ----- META: Character encoding and responsive viewport ----- -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Regex Tests - Book & Notes Vault</title>
+  
+  <!-- ----- STYLESHEETS: Design tokens, base styles, components, utilities ----- -->
+  <link rel="stylesheet" href="styles/tokens.css">
+  <link rel="stylesheet" href="styles/base.css">
+  <link rel="stylesheet" href="styles/components.css">
+  <link rel="stylesheet" href="styles/utilities.css">
+  
+  <!-- ----- TEST STYLES: Pass/fail indicators for test results ----- -->
+  <style>
+    /* Test result container with monospace font */
+    .test-result {
+      padding: var(--spacing-sm);
+      margin: var(--spacing-xs) 0;
+      border-radius: var(--radius-sm);
+      font-family: monospace;
+    }
+    /* Green background for passing tests */
+    .test-pass {
+      background: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+    }
+    /* Red background for failing tests */
+    .test-fail {
+      background: #f8d7da;
+      color: #721c24;
+      border: 1px solid #f5c6cb;
+    }
+  </style>
+</head>
+<body>
+  <!-- ----- ACCESSIBILITY: Skip link for keyboard navigation ----- -->
+  <a href="#main" class="skip-link">Skip to main content</a>
+  
+  <!-- ----- HEADER: Main navigation bar ----- -->
+  <header class="header">
+    <nav class="nav" aria-label="Main navigation">
+      <a href="index.html">About</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="records.html">My Records</a>
+      <a href="form.html">Add Book</a>
+      <a href="settings.html">Settings</a>
+    </nav>
+  </header>
+
+  <!-- ----- MAIN CONTENT: Automated regex validation tests ----- -->
+  <main id="main" class="container">
+    <h1 class="mt-lg">Regex Validation Tests</h1>
+    <p class="text-muted mb-lg">Automated tests for all validation patterns used in the application</p>
+
+    <!-- Test section for title/author pattern (no leading/trailing spaces) -->
+    <section class="card mb-lg">
+      <h2>Title/Author Pattern: No Leading/Trailing Spaces</h2>
+      <p><code>^\S(?:.*\S)?$</code></p>
+      <div id="titleTests"></div>
+    </section>
+
+    <!-- Test section for pages pattern (non-negative integers) -->
+    <section class="card mb-lg">
+      <h2>Pages Pattern: Non-negative Integer</h2>
+      <p><code>^(0|[1-9]\d*)$</code></p>
+      <div id="pagesTests"></div>
+    </section>
+
+    <!-- Test section for date pattern (YYYY-MM-DD format) -->
+    <section class="card mb-lg">
+      <h2>Date Pattern: YYYY-MM-DD</h2>
+      <p><code>^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$</code></p>
+      <div id="dateTests"></div>
+    </section>
+
+    <!-- Test section for tag pattern (letters, spaces, hyphens only) -->
+    <section class="card mb-lg">
+      <h2>Tag Pattern: Letters, Spaces, Hyphens</h2>
+      <p><code>^[A-Za-z]+(?:[ -][A-Za-z]+)*$</code></p>
+      <div id="tagTests"></div>
+    </section>
+
+    <!-- Test section for duplicate word detection (backreference) -->
+    <section class="card mb-lg">
+      <h2>Advanced: Duplicate Word Detection (Backreference)</h2>
+      <p><code>\b(\w+)\s+\1\b</code></p>
+      <div id="duplicateTests"></div>
+    </section>
+
+    <!-- Test section for no numbers pattern -->
+    <section class="card mb-lg">
+      <h2>No Numbers Pattern</h2>
+      <p><code>^[^0-9]*$</code></p>
+      <div id="noNumbersTests"></div>
+    </section>
+
+    <!-- Summary card showing total pass/fail counts -->
+    <div class="card">
+      <h2>Test Summary</h2>
+      <div id="summary"></div>
+    </div>
+  </main>
+
+  <!-- ----- TEST RUNNER: Execute all validation tests and display results ----- -->
+  <script type="module">
+    // Import regex patterns from validators module
+    import { patterns } from './scripts/validators.js';
+
+    // Test cases for each validation pattern (input and expected result)
+    const tests = {
+      title: [
+        { input: 'Valid Title', expected: true },
+        { input: 'Another Valid Title', expected: true },
+        { input: ' Leading space', expected: false },
+        { input: 'Trailing space ', expected: false },
+        { input: '  Both sides  ', expected: false },
+        { input: 'A', expected: true },
+        { input: '', expected: false }
+      ],
+      pages: [
+        { input: '0', expected: true },
+        { input: '1', expected: true },
+        { input: '250', expected: true },
+        { input: '1000', expected: true },
+        { input: '-5', expected: false },
+        { input: '01', expected: false },
+        { input: 'abc', expected: false },
+        { input: '12.5', expected: false }
+      ],
+      date: [
+        { input: '2025-01-15', expected: true },
+        { input: '2024-12-31', expected: true },
+        { input: '2023-06-15', expected: true },
+        { input: '2025-13-01', expected: false },
+        { input: '2025-00-15', expected: false },
+        { input: '2025-01-32', expected: false },
+        { input: '25-01-15', expected: false },
+        { input: '2025/01/15', expected: false }
+      ],
+      tag: [
+        { input: 'Agriculture', expected: true },
+        { input: 'Art', expected: true },
+        { input: 'Multi Word Tag', expected: true },
+        { input: 'Hyphenated-Tag', expected: true },
+        { input: 'Tag123', expected: false },
+        { input: '123', expected: false },
+        { input: 'Tag!', expected: false },
+        { input: ' Leading', expected: false }
+      ],
+      duplicateWord: [
+        { input: 'the the book', expected: true },
+        { input: 'This is is great', expected: true },
+        { input: 'No duplicates here', expected: false },
+        { input: 'The The Book', expected: true },
+        { input: 'word word', expected: true },
+        { input: 'different words', expected: false }
+      ],
+      noNumbers: [
+        { input: 'Only Letters', expected: true },
+        { input: 'Has 123 numbers', expected: false },
+        { input: 'Book1', expected: false },
+        { input: 'Pure Text', expected: true },
+        { input: '12345', expected: false }
+      ]
+    };
+
+    // Runs test cases for a pattern and displays results in container
+    function runTests(patternName, testCases, containerId) {
+      const container = document.getElementById(containerId);
+      let passed = 0;
+      let failed = 0;
+
+      // Test each case and create result element
+      testCases.forEach(test => {
+        // Compare actual result with expected
+        const pattern = patterns[patternName];
+        const result = pattern.test(test.input);
+        const success = result === test.expected;
+
+        if (success) passed++;
+        else failed++;
+
+        // Create colored result div with checkmark or X
+        const div = document.createElement('div');
+        div.className = `test-result ${success ? 'test-pass' : 'test-fail'}`;
+        div.textContent = `${success ? '✓' : '✗'} Input: "${test.input}" | Expected: ${test.expected} | Got: ${result}`;
+        container.appendChild(div);
+      });
+
+      return { passed, failed };
+    }
+
+    // Track total pass/fail across all test suites
+    let totalPassed = 0;
+    let totalFailed = 0;
+
+    // Run all test suites
+    const results = {
+      title: runTests('title', tests.title, 'titleTests'),
+      pages: runTests('pages', tests.pages, 'pagesTests'),
+      date: runTests('date', tests.date, 'dateTests'),
+      tag: runTests('tag', tests.tag, 'tagTests'),
+      duplicateWord: runTests('duplicateWord', tests.duplicateWord, 'duplicateTests'),
+      noNumbers: runTests('noNumbers', tests.noNumbers, 'noNumbersTests')
+    };
+
+    // Sum up all results
+    Object.values(results).forEach(r => {
+      totalPassed += r.passed;
+      totalFailed += r.failed;
+    });
+
+    // Display summary with pass/fail counts
+    const summary = document.getElementById('summary');
+    summary.innerHTML = `
+      <p class="stat-value">${totalPassed} / ${totalPassed + totalFailed}</p>
+      <p><strong>Passed:</strong> ${totalPassed}</p>
+      <p><strong>Failed:</strong> ${totalFailed}</p>
+      <p class="${totalFailed === 0 ? 'text-success' : 'text-error'}">
+        ${totalFailed === 0 ? '✓ All tests passed!' : '✗ Some tests failed'}
+      </p>
+    `;
+  </script>
+</body>
+</html>
