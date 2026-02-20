@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"> <!-- Set the character encoding to UTF‑8 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Make the layout responsive -->
+  <title>Book & Notes Vault - Your Personal Library</title>
+
+  <!-- Load design tokens (colors, spacing, fonts) -->
+  <link rel="stylesheet" href="styles/tokens.css">
+
+  <!-- Load base styles (reset, typography, page structure) -->
+  <link rel="stylesheet" href="styles/base.css">
+
+  <!-- Load component styles (cards, buttons, hero, footer, etc.) -->
+  <link rel="stylesheet" href="styles/components.css">
+
+  <!-- Load utility classes (spacing, alignment, layout helpers) -->
+  <link rel="stylesheet" href="styles/utilities.css">
+</head>
+
+<body>
+  <!-- Skip link for keyboard users to jump straight to the main content -->
+  <a href="#main" class="skip-link">Skip to main content</a>
+
+  <!-- ---------------------------------------------
+       HEADER: Navigation bar that stays at the top
+  ---------------------------------------------- -->
+  <header class="header">
+    <nav class="nav" aria-label="Main navigation">
+      <a href="index.html" aria-current="page">About</a> <!-- Mark current page -->
+      <a href="dashboard.html">Dashboard</a> <!-- Link to dashboard page -->
+      <a href="records.html">My Records</a> <!-- Link to records page -->
+      <a href="form.html">Add Book</a> <!-- Link to add book page -->
+      <a href="settings.html">Settings</a> <!-- Link to settings page -->
+    </nav>
+  </header>
+
+  <!-- ---------------------------------------------
+       MAIN CONTENT: Landmark area for screen readers
+  ---------------------------------------------- -->
+  <main id="main">
+
+    <!-- ---------------------------------------------
+         HERO SECTION: Full-width video with a title
+    ---------------------------------------------- -->
+    <section class="hero" id="hero" aria-label="Hero section">
+
+      <!-- Background video that auto-plays silently and loops -->
+      <video class="hero-video" id="heroVideo" autoplay muted loop playsinline poster="https://i.pinimg.com/1200x/16/ef/8f/16ef8f9f8138880c7b427961f7ec3163.jpg">
+        <source src="assets/Old_European_Library_Vieo.mp4" type="video/mp4"> <!-- Video file -->
+      </video>
+
+      <!-- Dark overlay with centered text -->
+      <div class="hero-overlay">
+        <h1 class="hero-title">Book & Notes Vault</h1> <!-- Main hero title -->
+      </div>
+
+    </section>
+
+    <!-- ---------------------------------------------
+         FEATURES SECTION: Benefits of using the system
+    ---------------------------------------------- -->
+    <section class="section">
+      <div class="two-col">
+
+        <div>
+          <!-- Image showing modern library shelves -->
+          <img src="https://i.pinimg.com/736x/c5/11/91/c51191aae3e39110def5b90b4203ea52.jpg" alt="Organized library shelves" loading="lazy" id="homeimg">
+        </div>
+
+        <div>
+          <h2>Why Use the Vault?</h2> <!-- Section title -->
+          <!-- List of advantages -->
+          <p>&#x2022; Organize your entire book collection in one place</p>
+          <p>&#x2022; Track reading progress and set goals</p>
+          <p>&#x2022; Search with powerful regex patterns</p>
+          <p>&#x2022; Access your data anywhere, anytime</p>
+          <p>&#x2022; Complete privacy - all data stored locally</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ---------------------------------------------
+         UNIQUE FEATURES SECTION: What makes us better
+    ---------------------------------------------- -->
+    <section class="section">
+      <div class="two-col reverse">
+
+        <div>
+          <!-- Image showing someone reading -->
+          <img src="https://i.pinimg.com/1200x/6d/e8/5d/6de85d5977957444d245b40a79a4fd13.jpg" alt="Person reading in a library" loading="lazy" id="homeimg">
+        </div>
+
+        <div>
+          <h2>What Makes Us Unique</h2> <!-- Section title -->
+          <!-- List of our unique features -->
+          <p><strong>Lightning Fast:</strong> No server delays, instant search and updates.</p>
+          <p><strong>Regex Power:</strong> Advanced search patterns for power users.</p>
+          <p><strong>Fully Accessible:</strong> Built with keyboard and screen reader support.</p>
+          <p><strong>Your Data, Your Control:</strong> Everything saved locally in your browser.</p>
+          <p><strong>Import/Export:</strong> Backup and restore your collection whenever you want.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section heading for categories -->
+    <div><br><h1 class="categories-head">BOOK CATEGORIES</h1></div>
+
+    <!-- ---------------------------------------------
+         CATEGORIES GRID: Four clickable category cards
+    ---------------------------------------------- -->
+    <section class="categories-grid" aria-label="Categories">
+
+      <!-- Agriculture category -->
+      <a href="form.html?category=Agriculture" class="card" style="--bg: url('https://i.pinimg.com/1200x/45/38/57/4538571219cc382073679e387b6bb7ed.jpg')" id="card-categ">
+        <div class="card-content">
+          <h2>Agriculture</h2> <!-- Category name -->
+          <p>Explore books on farming, sustainability, and innovation.</p>
+        </div>
+      </a>
+
+      <!-- Arts & Culture category -->
+      <a href="form.html?category=Arts%20%26%20Culture" class="card" style="--bg: url('https://i.pinimg.com/1200x/04/3a/4b/043a4b288c649de01c5cd4bcbde3cc2c.jpg')" id="card-categ">
+        <div class="card-content">
+          <h2>Arts & Culture</h2> <!-- Category name -->
+          <p>Appreciate creativity, design, and artistic expression.</p>
+        </div>
+      </a>
+
+      <!-- Entrepreneurship category -->
+      <a href="form.html?category=Entrepreneurship" class="card" style="--bg: url('https://i.pinimg.com/1200x/8e/26/2c/8e262cd3d547f7c91654b69bb322ed34.jpg')" id="card-categ">
+        <div class="card-content">
+          <h2>Entrepreneurship</h2> <!-- Category name -->
+          <p>Discover insights on business, startups, and innovation.</p>
+        </div>
+      </a>
+
+      <!-- Social Sciences category -->
+      <a href="form.html?category=Social Sciences" class="card" style="--bg: url('https://i.pinimg.com/1200x/d8/21/52/d8215270d22f633022cc4e23a8daa6a2.jpg')" id="card-categ">
+        <div class="card-content">
+          <h2>Social Sciences</h2> <!-- Category name -->
+          <p>Dive into scientific research, discoveries, and theories.</p>
+        </div>
+      </a>
+
+    </section>
+
+    <!-- ---------------------------------------------
+         ABOUT ME SECTION: Developer profile section
+    ---------------------------------------------- -->
+    <section class="about-section">
+
+      <!-- Section title -->
+      <h2 class="mt-lg">About Me</h2>
+
+      <div class="about-panel" class="card">
+
+        <!-- Left side with developer details -->
+        <div class="about-left">
+          <h3>Developer Information</h3> <!-- Heading for the details -->
+          <p><strong>Name:</strong> Bol Dau</p> <!-- Developer name -->
+          <p><strong>Email:</strong> h.druppi@valut.com</p> <!-- Developer email -->
+          <p><strong>GitHub:</strong> <a href="https://github.com/Bol-Dau" target="_blank">Bol-Dau</a></p> <!-- Developer GitHub link -->
+          <p>Passionate about building accessible, user-friendly web applications that solve real problems.</p> <!-- Short bio -->
+
+          <div class="about-buttons">
+            <!-- Button to email the developer -->
+            <a href="mailto:h.druppi@valut.com" class="btn">Email Me</a>
+          </div>
+        </div>
+
+        <!-- Right side with the decorative image -->
+        <div class="about-right">
+          <img src="https://i.pinimg.com/1200x/0d/8a/dd/0d8add65cb9ef0caea1a82d70da801c0.jpg" alt="Image showing gears"> <!-- Side image -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------------------------------------------
+         PARTNERS SECTION: Organizations supporting the project
+    ---------------------------------------------- -->
+    <section class="section">
+      <h2 class="text-center">Partners</h2> <!-- Section title -->
+
+      <div class="records-grid">
+
+        <!-- Partner card -->
+        <div class="card text-center">
+          <h3>ACLU</h3> <!-- Partner name -->
+          <p class="text-muted">Partner Organization</p> <!-- Partner type -->
+        </div>
+
+        <div class="card text-center">
+          <h3>ALU</h3> <!-- Partner name -->
+          <p class="text-muted">Educational Partner</p> <!-- Partner type -->
+        </div>
+
+        <div class="card text-center">
+          <h3>Harvard University</h3> <!-- Partner name -->
+          <p class="text-muted">Academic Partner</p> <!-- Partner type -->
+        </div>
+
+        <div class="card text-center">
+          <h3>Rwanda Central Library</h3> <!-- Partner name -->
+          <p class="text-muted">Library Partner</p> <!-- Partner type -->
+        </div>
+
+        <div class="card text-center">
+          <h3>Mercedes-Benz</h3> <!-- Partner name -->
+          <p class="text-muted">Corporate Partner</p> <!-- Partner type -->
+        </div>
+
+        <div class="card text-center">
+          <h3>Yale University</h3> <!-- Partner name -->
+          <p class="text-muted">Academic Partner</p> <!-- Partner type -->
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ---------------------------------------------
+       FOOTER: Website footer with links and contacts
+  ---------------------------------------------- -->
+  <footer class="footer" aria-labelledby="site-footer-title">
+    <div class="footer-content">
+
+      <!-- Brand name and copyright -->
+      <section class="footer-col">
+        <h3 id="site-footer-title">Book &amp; Notes Vault</h3> <!-- Footer brand title -->
+        <p class="text-muted">Your personal library companion.</p> <!-- Short description -->
+        <p class="tiny text-muted">
+          &copy; <span id="year"></span> Book &amp; Notes Vault. All rights reserved. <!-- Auto‑updated year -->
+        </p>
+      </section>
+
+      <!-- Quick links (same as header) -->
+      <nav class="footer-col" aria-label="Quick links">
+        <h4>Quick Links</h4>
+        <ul class="footer-list">
+          <li><a href="index.html">About</a></li> <!-- Link to About page -->
+          <li><a href="dashboard.html">Dashboard</a></li> <!-- Link to Dashboard page -->
+          <li><a href="records.html">My Records</a></li> <!-- Link to Records page -->
+          <li><a href="form.html">Add Book</a></li> <!-- Link to Add Book page -->
+          <li><a href="settings.html">Settings</a></li> <!-- Link to Settings page -->
+        </ul>
+      </nav>
+
+      <!-- Category shortcuts -->
+      <nav class="footer-col" aria-label="Book categories">
+        <h4>Categories</h4>
+        <ul class="footer-list">
+          <li><a href="form.html?category=Agriculture">Agriculture</a></li> <!-- Category link -->
+          <li><a href="form.html?category=Arts%20%26%20Culture">Arts &amp; Culture</a></li> <!-- Category link -->
+          <li><a href="form.html?category=Entrepreneurship">Entrepreneurship</a></li> <!-- Category link -->
+          <li><a href="form.html?category=Social%20Sciences">Social Sciences</a></li> <!-- Category link -->
+        </ul>
+      </nav>
+
+      <!-- Contact information and social media -->
+      <section class="footer-col" aria-label="Contact and social">
+        <h4>Contact</h4>
+
+        <ul class="footer-list">
+          <li>Email: <a href="mailto:h.druppi@valut.com">h.druppi@valut.com</a></li> <!-- Email link -->
+          <li>Phone: <a href="tel:+250795000000">+250 795 000 000</a></li> <!-- Phone link -->
+          <li>GitHub: <a href="https://github.com/Bol-Dau" target="_blank" rel="noopener">Bol-Dau</a></li> <!-- GitHub link -->
+        </ul>
+
+        <!-- Social media icons -->
+        <div class="footer-social" aria-label="Social media">
+
+          <!-- Instagram -->
+          <a class="social-link" href="https://instagram.com/yourhandle" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path fill="currentColor" d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm10 2H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3Zm-5 3.5A5.5 5.5 0 1 1 6.5 13 5.5 5.5 0 0 1 12 7.5Zm0 2A3.5 3.5 0 1 0 15.5 13 3.5 3.5 0 0 0 12 9.5Zm5.75-2.25a1 1 0 1 1-1 1 1 1 0 0 1 1-1Z"/>
+            </svg>
+          </a>
+
+          <!-- Facebook -->
+          <a class="social-link" href="https://facebook.com/yourhandle" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path fill="currentColor" d="M13 3h3a1 1 0 0 1 1 1v3h-3a2 2 0 0 0-2 2v3h5l-1 4h-4v7h-4v-7H6v-4h3V9a5 5 0 0 1 5-5Z"/>
+            </svg>
+          </a>
+
+          <!-- X / Twitter -->
+          <a class="social-link" href="https://twitter.com/yourhandle" target="_blank" rel="noopener" aria-label="Twitter">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path fill="currentColor" d="M3 3h4.6l5.2 7.5L19 3h2l-7 9.7L21 21h-4.6l-5.5-8L7 21H5l7-9.7L3 3Z"/>
+            </svg>
+          </a>
+
+          <!-- TikTok -->
+          <a class="social-link" href="https://tiktok.com/@yourhandle" target="_blank" rel="noopener" aria-label="TikTok">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path fill="currentColor" d="M14 3h3c.2 2 1.2 3.6 3 4.6V11c-2.2-.4-3.9-1.5-5-3v6.7a6.2 6.2 0 1 1-6.2-6.2c.4 0 .8 0 1.2.1V11a2.8 2.8 0 1 0 2 2.7V3Z"/>
+            </svg>
+          </a>
+
+        </div>
+      </section>
+
+    </div>
+  </footer>
+
+  <!-- ---------------------------------------------
+       PAGE SCRIPTS: Theme handling and reduced motion
+  ---------------------------------------------- -->
+  <script type="module">
+    import { applyTheme } from './scripts/settings.js';
+
+    applyTheme(); /* Load and apply the saved theme */
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches; /* Check if motion should be reduced */
+
+    if (prefersReducedMotion) { /* Hide video for users who prefer less animation */
+      video.pause();
+      video.style.display = 'none';
+    }
+
+    document.getElementById('year').textContent = new Date().getFullYear(); /* Set current year automatically */
+  </script>
+
+</body>
+</html>
+
+
