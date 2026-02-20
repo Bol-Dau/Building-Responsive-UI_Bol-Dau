@@ -66,7 +66,7 @@ A fully accessible, responsive web application for cataloging books and notes wi
 - 40+ curated books (10+ per category)
 - Stored in localStorage after first load from seed.json
 
-## Key Features Explained
+## Instruction on how to use Key Features
 
 ### Reading Progress Tracking
 1. Navigate to My Records
@@ -173,11 +173,11 @@ A fully accessible, responsive web application for cataloging books and notes wi
 - All data persists in localStorage
 
 ## GitHub Pages Deployment
-1. Access at: [`https://bol-dau.github.io/Building-Responsive-UI_Bol-Dau/`]
+1. Access at: `https://bol-dau.github.io/Building-Responsive-UI_Bol-Dau/`
 
 ## Live Demo
 Click this link to see the demo video
-[`https://youtu.be/QdObbX8MtKI`]
+`https://youtu.be/QdObbX8MtKI`
 
 ## Running Tests
 
