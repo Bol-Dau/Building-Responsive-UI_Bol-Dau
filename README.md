@@ -2,6 +2,11 @@
 
 ### Overview
 A fully accessible, responsive web application for cataloging books and notes with powerful regex search, reading progress tracking, library catalog, and local data persistence.
+### GitHub Pages Deployment
+1. Access at: https://bol-dau.github.io/Building-Responsive-UI_Bol-Dau/
+
+### Live Demo
+Click this link to see the demo video: https://youtu.be/QdObbX8MtKI
 
 ## Theme & Brand
 
