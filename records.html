@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"> <!-- Set the character encoding -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Make the layout responsive -->
+  <title>My Records - Book &amp; Notes Vault</title>
+  <!-- Load design tokens (colors, spacing, fonts) -->
+  <link rel="stylesheet" href="styles/tokens.css">
+
+  <!-- Load base styles (reset, typography, page structure) -->
+  <link rel="stylesheet" href="styles/base.css">
+
+  <!-- Load component styles (cards, buttons, hero, footer, etc.) -->
+  <link rel="stylesheet" href="styles/components.css">
+
+  <!-- Load utility classes (spacing, alignment, layout helpers) -->
+  <link rel="stylesheet" href="styles/utilities.css">
+</head>
+<body>
+  <!-- Skip link for keyboard users -->
+  <a href="#main" class="skip-link">Skip to main content</a>
+  
+  <!-- ---------------------------------------------
+       HEADER: Site navigation
+  ---------------------------------------------- -->
+  <header class="header">
+    <nav class="nav" aria-label="Main navigation">
+      <a href="index.html">About</a> <!-- Link to About page -->
+      <a href="dashboard.html">Dashboard</a> <!-- Link to Dashboard page -->
+      <a href="records.html" aria-current="page">My Records</a> <!-- Current page -->
+      <a href="form.html">Add Book</a> <!-- Link to Add Book page -->
+      <a href="settings.html">Settings</a> <!-- Link to Settings page -->
+    </nav>
+  </header>
+
+  <!-- ---------------------------------------------
+       MAIN CONTENT: Book records list
+  ---------------------------------------------- -->
+  <main id="main" class="container">
+    <h1 class="mt-lg">My Records</h1>
+
+  <!-- ---------------------------------------------
+       SEARCH CONTROLS: Filter records with regex support
+       Includes case-sensitive and advanced mode toggles
+    ---------------------------------------------- -->
+
+    <!-- SEARCH CONTROLS: Search and options -->
+    <div class="search-controls">
+      <!-- Search field -->
+      <div class="form-group" style="flex: 1;">
+        <label for="searchInput" class="form-label">Search</label>
+        <input type="text" id="searchInput" class="form-input" placeholder="Search by title, author, or tag...">
+        <!-- Show regex errors here -->
+        <div id="searchError" class="form-error" role="alert"></div>
+      </div>
+      
+      <!-- Search options -->
+      <div class="form-group">
+        <label class="form-label">&nbsp;</label>
+        <!-- Case-sensitive toggle -->
+        <div class="checkbox-group">
+          <input type="checkbox" id="caseSensitive">
+          <label for="caseSensitive">Case sensitive</label>
+        </div>
+        <!-- Advanced regex toggle -->
+        <div class="checkbox-group">
+          <input type="checkbox" id="advancedMode">
+          <label for="advancedMode">Advanced regex</label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Records table or cards (rendered by JS) -->
+    <div id="recordsContainer"></div>
+  </main>
+
+  <!-- ---------------------------------------------
+       FOOTER: Website footer with links and contacts
+  ---------------------------------------------- -->
+  <footer class="footer" aria-labelledby="site-footer-title">
+    <div class="footer-content">
+
+      <!-- Brand name and copyright -->
+      <section class="footer-col">
+        <h3 id="site-footer-title">Book &amp; Notes Vault</h3> <!-- Footer brand title -->
+        <p class="text-muted">Your personal library companion.</p> <!-- Short description -->
+        <p class="tiny text-muted">
+          &copy; <span id="year"></span> Book &amp; Notes Vault. All rights reserved. <!-- Auto‑updated year -->
+        </p>
+      </section>
+
+      <!-- Quick links (same as header) -->
+      <nav class="footer-col" aria-label="Quick links">
+        <h4>Quick Links</h4>
+        <ul class="footer-list">
+          <li><a href="index.html">About</a></li> <!-- Link to About page -->
+          <li><a href="dashboard.html">Dashboard</a></li> <!-- Link to Dashboard page -->
+          <li><a href="records.html">My Records</a></li> <!-- Link to Records page -->
+          <li><a href="form.html">Add Book</a></li> <!-- Link to Add Book page -->
+          <li><a href="settings.html">Settings</a></li> <!-- Link to Settings page -->
+        </ul>
+      </nav>
+
+      <!-- Category shortcuts -->
+      <nav class="footer-col" aria-label="Book categories">
+        <h4>Categories</h4>
+        <ul class="footer-list">
+          <li><a href="form.html?category=Agriculture">Agriculture</a></li> <!-- Category link -->
+          <li><a href="form.html?category=Arts%20%26%20Culture">Arts &amp; Culture</a></li> <!-- Category link -->
+          <li><a href="form.html?category=Entrepreneurship">Entrepreneurship</a></li> <!-- Category link -->
+          <li><a href="form.html?category=Social%20Sciences">Social Sciences</a></li> <!-- Category link -->
+        </ul>
+      </nav>
+
+      <!-- Contact information and social media -->
+      <section class="footer-col" aria-label="Contact and social">
+        <h4>Contact</h4>
+
+        <ul class="footer-list">
+          <li>Email: <a href="mailto:h.druppi@valut.com">h.druppi@valut.com</a></li> <!-- Email link -->
+          <li>Phone: <a href="tel:+250795000000">+250 795 000 000</a></li> <!-- Phone link -->
+          <li>GitHub: <a href="https://github.com/Bol-Dau" target="_blank" rel="noopener">Bol-Dau</a></li> <!-- GitHub link -->
+        </ul>
+
+        <!-- Social media icons -->
+        <div class="footer-social" aria-label="Social media">
+
+          <!-- Instagram -->
+          <a class="social-link" href="https://instagram.com/boydruppi" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path fill="currentColor" d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm10 2H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3Zm-5 3.5A5.5 5.5 0 1 1 6.5 13 5.5 5.5 0 0 1 12 7.5Zm0 2A3.5 3.5 0 1 0 15.5 13 3.5 3.5 0 0 0 12 9.5Zm5.75-2.25a1 1 0 1 1-1 1 1 1 0 0 1 1-1Z"/>
+            </svg>
+          </a>
+
+          <!-- Facebook -->
+          <a class="social-link" href="https://facebook.com/boydruppi" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path fill="currentColor" d="M13 3h3a1 1 0 0 1 1 1v3h-3a2 2 0 0 0-2 2v3h5l-1 4h-4v7h-4v-7H6v-4h3V9a5 5 0 0 1 5-5Z"/>
+            </svg>
+          </a>
+
+          <!-- X / Twitter -->
+          <a class="social-link" href="https://twitter.com/boydruppi" target="_blank" rel="noopener" aria-label="Twitter">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path fill="currentColor" d="M3 3h4.6l5.2 7.5L19 3h2l-7 9.7L21 21h-4.6l-5.5-8L7 21H5l7-9.7L3 3Z"/>
+            </svg>
+          </a>
+
+          <!-- TikTok -->
+          <a class="social-link" href="https://tiktok.com/@boydruppi" target="_blank" rel="noopener" aria-label="TikTok">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path fill="currentColor" d="M14 3h3c.2 2 1.2 3.6 3 4.6V11c-2.2-.4-3.9-1.5-5-3v6.7a6.2 6.2 0 1 1-6.2-6.2c.4 0 .8 0 1.2.1V11a2.8 2.8 0 1 0 2 2.7V3Z"/>
+            </svg>
+          </a>
+
+        </div>
+      </section>
+
+    </div>
+  </footer>
+
+  <!-- ---------------------------------------------
+       PAGE SCRIPTS: Search, sort, and reading log
+  ---------------------------------------------- -->
+  <script type="module">
+    import { getRecords, deleteRecord, logReadingProgress, getRecordById } from './scripts/state.js'; /* Work with stored records */
+    import { searchRecords, highlightMatches, sortRecords } from './scripts/search.js'; /* Search, highlight, sort */
+    import { announce, showModal, formatDate } from './scripts/ui.js'; /* Announce messages, modals, format dates */
+    import { applyTheme } from './scripts/settings.js'; /* Apply saved theme */
+
+    applyTheme(); /* Set the theme from localStorage */
+
+    /* Keep current sort and search state */
+    let currentSort = { field: 'title', direction: 'asc' };
+    let currentQuery = '';
+    let searchOptions = { caseSensitive: false, advanced: false };
+
+    /* Cache DOM elements */
+    const searchInput = document.getElementById('searchInput');
+    const caseSensitiveCheck = document.getElementById('caseSensitive');
+    const advancedModeCheck = document.getElementById('advancedMode');
+    const searchError = document.getElementById('searchError');
+    const container = document.getElementById('recordsContainer');
+
+    /* Build and show the records (cards on mobile, table on desktop) */
+    function renderRecords() {
+      let records = getRecords(); /* Load all records */
+      
+      if (currentQuery) { /* Filter by search if there is a query */
+        try {
+          records = searchRecords(records, currentQuery, searchOptions);
+          searchError.textContent = '';
+        } catch (e) {
+          searchError.textContent = 'Invalid regex pattern'; /* Show invalid regex message */
+          records = [];
+        }
+      }
+
+      records = sortRecords(records, currentSort.field, currentSort.direction); /* Sort records */
+
+      const isMobile = window.innerWidth < 768; /* Decide layout mode */
+
+      if (records.length === 0) { /* Empty state */
+        container.innerHTML = '<p class="text-muted">No records found</p>';
+        return;
+      }
+
+      if (isMobile) { /* Card layout on small screens */
+        container.innerHTML = `<div class="records-grid">${records.map(record => `
+          <div class="record-card">
+            <h3>${highlightMatches(record.title, currentQuery, searchOptions)}</h3>
+            <p><strong>Author:</strong> ${highlightMatches(record.author, currentQuery, searchOptions)}</p>
+            <p><strong>Tag:</strong> ${highlightMatches(record.tag, currentQuery, searchOptions)}</p>
+            <p><strong>Pages:</strong> ${record.pages}</p>
+            <p><strong>Pages Read:</strong> ${record.pagesRead || 0}</p>
+            <p><strong>Date:</strong> ${formatDate(record.dateAdded)}</p>
+            <div class="record-actions">
+              form.html?id=${record.id}Edit</a>
+              <button class="btn btn-danger" data-id="${record.id}">Delete</button>
+              <button class="btn" data-read-id="${record.id}">Read</button>
+            </div>
+          </div>
+        `).join('')}</div>`;
+      } else { /* Table layout on larger screens */
+        container.innerHTML = `
+          <div class="table-container">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th data-field="title" class="${currentSort.field === 'title' ? 'sort-' + currentSort.direction : ''}">Title</th>
+                  <th data-field="author" class="${currentSort.field === 'author' ? 'sort-' + currentSort.direction : ''}">Author</th>
+                  <th data-field="tag" class="${currentSort.field === 'tag' ? 'sort-' + currentSort.direction : ''}">Tag</th>
+                  <th data-field="pages" class="${currentSort.field === 'pages' ? 'sort-' + currentSort.direction : ''}">Pages</th>
+                  <th data-field="pagesRead" class="${currentSort.field === 'pagesRead' ? 'sort-' + currentSort.direction : ''}">Pages Read</th>
+                  <th data-field="dateAdded" class="${currentSort.field === 'dateAdded' ? 'sort-' + currentSort.direction : ''}">Date Added</th>
+                  <th>Actions</th>
+                  <th>Read</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${records.map(record => `
+                  <tr>
+                    <td>${highlightMatches(record.title, currentQuery, searchOptions)}</td>
+                    <td>${highlightMatches(record.author, currentQuery, searchOptions)}</td>
+                    <td>${highlightMatches(record.tag, currentQuery, searchOptions)}</td>
+                    <td>${record.pages}</td>
+                    <td>${record.pagesRead || 0}</td>
+                    <td>${formatDate(record.dateAdded)}</td>
+                    <td>
+                      <a href="form.html?id=${record.id}" class="btn btn-secondary">Edit</a>
+                      <button class="btn btn-danger" data-id="${record.id}">Delete</button>
+                    </td>
+                    <td>
+                      <button class="btn" data-read-id="${record.id}" aria-label="Log pages read for ${record.title}">Read</button>
+                    </td>
+                  </tr>
+                `).join('')}
+              </tbody>
+            </table>
+          </div>
+        `;
+
+        /* Enable sorting by clicking table headers */
+        document.querySelectorAll('.table th[data-field]').forEach(th => {
+          th.addEventListener('click', () => {
+            const field = th.dataset.field;
+            if (currentSort.field === field) {
+              currentSort.direction = currentSort.direction === 'asc' ? 'desc' : 'asc'; /* Toggle direction */
+            } else {
+              currentSort.field = field; /* Switch field */
+              currentSort.direction = 'asc';
+            }
+            renderRecords();
+          });
+        });
+      }
+
+      /* Delete a record with confirmation */
+      document.querySelectorAll('[data-id]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const id = btn.dataset.id;
+          const record = records.find(r => r.id === id);
+          showModal(
+            'Confirm Delete',
+            `Are you sure you want to delete "${record.title}"?`,
+            () => {
+              deleteRecord(id); /* Remove the record */
+              announce(`Deleted ${record.title}`); /* Announce deletion */
+              renderRecords(); /* Refresh list */
+            }
+          );
+        });
+      });
+
+      /* Open the Read modal for logging pages read */
+      document.querySelectorAll('[data-read-id]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const id = btn.dataset.id || btn.dataset.readId;
+          const record = getRecordById(id);
+          showReadingModal(record); /* Open reading modal */
+        });
+      });
+    }
+
+    /* Modal for logging pages read today */
+    function showReadingModal(record) {
+      const modal = document.createElement('div'); /* Create modal wrapper */
+      modal.className = 'modal';
+      modal.setAttribute('role', 'dialog');
+      modal.setAttribute('aria-labelledby', 'read-modal-title');
+      modal.setAttribute('aria-modal', 'true');
+      
+      const remaining = record.pages - (record.pagesRead || 0); /* Pages left to read */
+      
+      /* Modal content with inputs */
+      modal.innerHTML = `
+        <div class="modal-content">
+          <h2 id="read-modal-title">Log Reading</h2>
+          <p><strong>${record.title}</strong></p>
+          <p>Progress: ${record.pagesRead || 0} / ${record.pages} pages</p>
+          <div class="form-group">
+            <label for="pagesReadToday" class="form-label">Pages read today *</label>
+            <input type="number" id="pagesReadToday" class="form-input" min="1" max="${remaining}" required>
+            <div id="pagesReadError" class="form-error" role="alert"></div>
+          </div>
+          <div class="form-group">
+            <label for="readNote" class="form-label">Note (optional)</label>
+            <input type="text" id="readNote" class="form-input">
+          </div>
+          <div class="modal-actions">
+            <button class="btn btn-secondary" id="read-cancel">Cancel</button>
+            <button class="btn" id="read-add">Add</button>
+          </div>
+        </div>
+      `;
+      
+      document.body.appendChild(modal); /* Add modal to the page */
+      
+      const input = modal.querySelector('#pagesReadToday'); /* Input for pages */
+      const noteInput = modal.querySelector('#readNote'); /* Optional note */
+      const errorEl = modal.querySelector('#pagesReadError'); /* Error text holder */
+      const addBtn = modal.querySelector('#read-add'); /* Add button */
+      const cancelBtn = modal.querySelector('#read-cancel'); /* Cancel button */
+      
+      input.focus(); /* Focus the input for quick typing */
+      
+      const cleanup = () => document.body.removeChild(modal); /* Close and remove modal */
+      
+      addBtn.addEventListener('click', () => { /* Save logged pages */
+        const pages = parseInt(input.value);
+        if (!pages || pages < 1) {
+          errorEl.textContent = 'Please enter a valid number'; /* Validate positive number */
+          return;
+        }
+        if (pages > remaining) {
+          errorEl.textContent = "You can't read more than the book's total pages."; /* Validate cap */
+          return;
+        }
+        
+        const updated = logReadingProgress(record.id, pages, noteInput.value); /* Save log */
+        if (updated) {
+          const newTotal = updated.pagesRead;
+          announce(`Added ${pages} pages to ${record.title}. Total: ${newTotal}/${record.pages}.`, 'polite'); /* Announce success */
+          cleanup();
+          renderRecords(); /* Refresh list */
+        }
+      });
+      
+      cancelBtn.addEventListener('click', cleanup); /* Close on cancel */
+      modal.addEventListener('click', (e) => { if (e.target === modal) cleanup(); }); /* Close when clicking backdrop */
+    }
+
+    /* Live search by text */
+    searchInput.addEventListener('input', (e) => {
+      currentQuery = e.target.value;
+      renderRecords();
+    });
+
+    /* Toggle case sensitivity */
+    caseSensitiveCheck.addEventListener('change', (e) => {
+      searchOptions.caseSensitive = e.target.checked;
+      renderRecords();
+    });
+
+    /* Toggle advanced regex mode */
+    advancedModeCheck.addEventListener('change', (e) => {
+      searchOptions.advanced = e.target.checked;
+      renderRecords();
+    });
+
+    /* Switch layout on resize (cards/table) */
+    window.addEventListener('resize', renderRecords);
+    /* First render on load */
+    renderRecords();
+    document.getElementById('year').textContent = new Date().getFullYear(); /* Set current year automatically */
+  </script>
+</body>
+</html>

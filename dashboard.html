@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"> <!-- Set character encoding -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Make the page responsive -->
+  <title>Dashboard - Book &amp; Notes Vault</title>
+  <!-- Load design tokens (colors, spacing, fonts) -->
+  <link rel="stylesheet" href="styles/tokens.css">
+
+  <!-- Load base styles (reset, typography, page structure) -->
+  <link rel="stylesheet" href="styles/base.css">
+
+  <!-- Load component styles (cards, buttons, hero, footer, etc.) -->
+  <link rel="stylesheet" href="styles/components.css">
+
+  <!-- Load utility classes (spacing, alignment, layout helpers) -->
+  <link rel="stylesheet" href="styles/utilities.css">
+</head>
+<body>
+  <!-- Skip link so keyboard users can jump to the main content -->
+  <a href="#main" class="skip-link">Skip to main content</a>
+  
+  <!-- ---------------------------------------------
+       HEADER: Navigation bar that stays at the top
+  ---------------------------------------------- -->
+  <header class="header">
+    <nav class="nav" aria-label="Main navigation">
+      <a href="index.html">About</a> <!-- Link to About page -->
+      <a href="dashboard.html" aria-current="page">Dashboard</a> <!-- Current page -->
+      <a href="records.html">My Records</a> <!-- Link to Records page -->
+      <a href="form.html">Add Book</a> <!-- Link to Add Book page -->
+      <a href="settings.html">Settings</a> <!-- Link to Settings page -->
+    </nav>
+  </header>
+
+  <!-- ---------------------------------------------
+       MAIN CONTENT: Statistics dashboard
+  ---------------------------------------------- -->
+  <main id="main" class="container">
+    <h1 class="mt-lg">Dashboard</h1>
+
+    <!-- ---------------------------------------------
+         STATISTICS GRID: Four key metrics
+    ---------------------------------------------- -->
+    <div class="stat-grid" id="statsGrid">
+      <!-- Total books in My Records -->
+      <div class="stat-card">
+        <h3>Total Books</h3>
+        <div class="stat-value" id="totalBooks">0</div>
+      </div>
+
+      <!-- Category with the most books -->
+      <div class="stat-card">
+        <h3>Favorite Category</h3>
+        <div class="stat-value" id="favoriteCategory">None</div>
+      </div>
+
+      <!-- Reading goal based on pages read -->
+      <div class="stat-card">
+        <h3>Goal Progress</h3>
+        <div class="stat-value" id="goalValue">0 / 1000</div>
+        <!-- Visual progress bar -->
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressFill" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        <!-- Screen readers announce progress changes here -->
+        <div id="goalMessage" aria-live="polite" class="mt-sm text-muted"></div>
+      </div>
+
+      <!-- Recently interacted books -->
+      <div class="stat-card">
+        <h3>Last 3 Interacted</h3>
+        <div id="lastInteracted">
+          <p class="text-muted">No books yet</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ---------------------------------------------
+         MOTIVATION SECTION: Encourage goal tracking
+    ---------------------------------------------- -->
+    <section class="section">
+      <div class="two-col reverse">
+        <div>
+          <!-- Image that represents progress -->
+          <img src="https://i.pinimg.com/736x/9f/c6/3a/9fc63a384794782e9c0789366387fe6a.jpg" alt="Reading progress visualization" loading="lazy" id="homeimg">
+        </div>
+        <div>
+          <h2>Track Your Progress</h2>
+          <p>Stay motivated by tracking your reading goals. Set targets in pages, hours, or days and watch your progress grow.</p>
+          <p>The Vault helps you build consistent reading habits and achieve your learning objectives.</p>
+          <!-- Link to change goal settings -->
+          <a href="settings.html" class="btn mt-md">Adjust Your Goals</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ---------------------------------------------
+       FOOTER: Website footer with links and contacts
+  ---------------------------------------------- -->
+  <footer class="footer" aria-labelledby="site-footer-title">
+    <div class="footer-content">
+
+      <!-- Brand name and copyright -->
+      <section class="footer-col">
+        <h3 id="site-footer-title">Book &amp; Notes Vault</h3> <!-- Footer brand title -->
+        <p class="text-muted">Your personal library companion.</p> <!-- Short description -->
+        <p class="tiny text-muted">
+          &copy; <span id="year"></span> Book &amp; Notes Vault. All rights reserved. <!-- Auto‑updated year -->
+        </p>
+      </section>
+
+      <!-- Quick links (same as header) -->
+      <nav class="footer-col" aria-label="Quick links">
+        <h4>Quick Links</h4>
+        <ul class="footer-list">
+          <li><a href="index.html">About</a></li> <!-- Link to About page -->
+          <li><a href="dashboard.html">Dashboard</a></li> <!-- Link to Dashboard page -->
+          <li><a href="records.html">My Records</a></li> <!-- Link to Records page -->
+          <li><a href="form.html">Add Book</a></li> <!-- Link to Add Book page -->
+          <li><a href="settings.html">Settings</a></li> <!-- Link to Settings page -->
+        </ul>
+      </nav>
+
+      <!-- Category shortcuts -->
+      <nav class="footer-col" aria-label="Book categories">
+        <h4>Categories</h4>
+        <ul class="footer-list">
+          <li><a href="form.html?category=Agriculture">Agriculture</a></li> <!-- Category link -->
+          <li><a href="form.html?category=Arts%20%26%20Culture">Arts &amp; Culture</a></li> <!-- Category link -->
+          <li><a href="form.html?category=Entrepreneurship">Entrepreneurship</a></li> <!-- Category link -->
+          <li><a href="form.html?category=Social%20Sciences">Social Sciences</a></li> <!-- Category link -->
+        </ul>
+      </nav>
+
+      <!-- Contact information and social media -->
+      <section class="footer-col" aria-label="Contact and social">
+        <h4>Contact</h4>
+
+        <ul class="footer-list">
+          <li>Email: <a href="mailto:h.druppi@valut.com">h.druppi@valut.com</a></li> <!-- Email link -->
+          <li>Phone: <a href="tel:+250795000000">+250 795 000 000</a></li> <!-- Phone link -->
+          <li>GitHub: <a href="https://github.com/Bol-Dau" target="_blank" rel="noopener">Bol-Dau</a></li> <!-- GitHub link -->
+        </ul>
+
+        <!-- Social media icons -->
+        <div class="footer-social" aria-label="Social media">
+
+          <!-- Instagram -->
+          <a class="social-link" href="https://instagram.com/boydruppi" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path fill="currentColor" d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm10 2H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3Zm-5 3.5A5.5 5.5 0 1 1 6.5 13 5.5 5.5 0 0 1 12 7.5Zm0 2A3.5 3.5 0 1 0 15.5 13 3.5 3.5 0 0 0 12 9.5Zm5.75-2.25a1 1 0 1 1-1 1 1 1 0 0 1 1-1Z"/>
+            </svg>
+          </a>
+
+          <!-- Facebook -->
+          <a class="social-link" href="https://facebook.com/boydruppi" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path fill="currentColor" d="M13 3h3a1 1 0 0 1 1 1v3h-3a2 2 0 0 0-2 2v3h5l-1 4h-4v7h-4v-7H6v-4h3V9a5 5 0 0 1 5-5Z"/>
+            </svg>
+          </a>
+
+          <!-- X / Twitter -->
+          <a class="social-link" href="https://twitter.com/boydruppi" target="_blank" rel="noopener" aria-label="Twitter">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path fill="currentColor" d="M3 3h4.6l5.2 7.5L19 3h2l-7 9.7L21 21h-4.6l-5.5-8L7 21H5l7-9.7L3 3Z"/>
+            </svg>
+          </a>
+
+          <!-- TikTok -->
+          <a class="social-link" href="https://tiktok.com/@boydruppi" target="_blank" rel="noopener" aria-label="TikTok">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path fill="currentColor" d="M14 3h3c.2 2 1.2 3.6 3 4.6V11c-2.2-.4-3.9-1.5-5-3v6.7a6.2 6.2 0 1 1-6.2-6.2c.4 0 .8 0 1.2.1V11a2.8 2.8 0 1 0 2 2.7V3Z"/>
+            </svg>
+          </a>
+
+        </div>
+      </section>
+
+    </div>
+  </footer>
+
+  <!-- ---------------------------------------------
+       PAGE SCRIPTS: Load stats and update dashboard
+  ---------------------------------------------- -->
+  <script type="module">
+    import { getStats } from './scripts/state.js'; /* Read calculated stats from storage */
+    import { getSettings, convertUnit, applyTheme } from './scripts/settings.js'; /* Read settings and convert units */
+    import { announce } from './scripts/ui.js'; /* Announce updates for screen readers */
+
+    applyTheme(); /* Apply the saved theme (light/dark) */
+
+    function updateDashboard() { /* Refresh the stats on the page */
+      const stats = getStats(); /* Load stats from storage */
+      const settings = getSettings(); /* Load user settings */
+
+      document.getElementById('totalBooks').textContent = stats.total; /* Show total books */
+      document.getElementById('favoriteCategory').textContent = stats.favoriteCategory; /* Show favorite category */
+
+      const currentValue = convertUnit(stats.totalPagesRead, 'pages', settings.unit); /* Convert pages read to selected unit */
+      const goalValue = settings.goal; /* User's goal value */
+      const percentage = Math.min((currentValue / goalValue) * 100, 100); /* Cap at 100% */
+
+      document.getElementById('goalValue').textContent = `${Math.round(currentValue)} / ${goalValue} ${settings.unit}`; /* Show progress numbers */
+
+      const progressFill = document.getElementById('progressFill'); /* Progress bar fill element */
+      progressFill.style.width = `${percentage}%`; /* Set bar width */
+      progressFill.setAttribute('aria-valuenow', Math.round(percentage)); /* Update ARIA value */
+
+      const goalMessage = document.getElementById('goalMessage'); /* Message area below the bar */
+      if (currentValue >= goalValue) {
+        goalMessage.textContent = `Goal exceeded by ${Math.round(currentValue - goalValue)} ${settings.unit}!`; /* Success message */
+        goalMessage.className = 'mt-sm text-success'; /* Green status */
+        announce(`Goal exceeded by ${Math.round(currentValue - goalValue)} ${settings.unit}`, 'assertive'); /* Screen reader alert */
+      } else {
+        const remaining = Math.round(goalValue - currentValue); /* Remaining to reach goal */
+        goalMessage.textContent = `${remaining} ${settings.unit} to reach your goal`; /* Remaining message */
+        goalMessage.className = 'mt-sm text-muted'; /* Muted status */
+      }
+
+      const lastInteractedEl = document.getElementById('lastInteracted'); /* Recent activity box */
+      if (stats.lastInteracted.length === 0) {
+        lastInteractedEl.innerHTML = '<p class="text-muted">No books yet</p>'; /* Empty state */
+      } else {
+        lastInteractedEl.innerHTML = stats.lastInteracted
+          .map(book => `<p><strong>${book.title}</strong> by ${book.author}</p>`)
+          .join(''); /* Show the last three entries */
+      }
+    }
+
+    updateDashboard(); /* Fill the dashboard on load */
+    window.addEventListener('storage', updateDashboard); /* Refresh when another tab updates data */
+    document.getElementById('year').textContent = new Date().getFullYear(); /* Set current year automatically */
+  </script>
+</body>
+</html>

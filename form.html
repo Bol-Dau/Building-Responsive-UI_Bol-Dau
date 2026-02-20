@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"> <!-- Set the character encoding -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Make the page responsive -->
+  <title>Add/Edit Book - Book &amp; Notes Vault</title>
+
+  <!-- Load design tokens (colors, spacing, fonts) -->
+  <link rel="stylesheet" href="styles/tokens.css">
+
+  <!-- Load base styles (reset, typography, page structure) -->
+  <link rel="stylesheet" href="styles/base.css">
+
+  <!-- Load component styles (cards, buttons, hero, footer, etc.) -->
+  <link rel="stylesheet" href="styles/components.css">
+
+  <!-- Load utility classes (spacing, alignment, layout helpers) -->
+  <link rel="stylesheet" href="styles/utilities.css">
+</head>
+<body>
+  <!-- Skip link so keyboard users can jump to the main content -->
+  <a href="#main" class="skip-link">Skip to main content</a>
+  
+  <!-- ---------------------------------------------
+       HEADER: Top navigation bar
+  ---------------------------------------------- -->
+  <header class="header">
+    <nav class="nav" aria-label="Main navigation">
+      <a href="index.html">About</a> <!-- Link to About page -->
+      <a href="dashboard.html">Dashboard</a> <!-- Link to Dashboard page -->
+      <a href="records.html">My Records</a> <!-- Link to Records page -->
+      <a href="form.html" aria-current="page">Add Book</a> <!-- Current page -->
+      <a href="settings.html">Settings</a> <!-- Link to Settings page -->
+    </nav>
+  </header>
+
+  <!-- ---------------------------------------------
+       MAIN CONTENT: Library list and add/edit form
+  ---------------------------------------------- -->
+  <main id="main" class="container">
+    <!-- The title changes to "Edit Book" when ?id= is in the URL -->
+    <h1 class="mt-lg" id="formTitle">Add Book</h1>
+
+    <!-- ---------------------------------------------
+         LIBRARY CATALOG: Browse books from seed data
+         Tabs filter by category; ?category= preselects a tab
+    ---------------------------------------------- -->
+    <section id="librarySection" class="section">
+      <h2>Library Catalog</h2>
+
+      <!-- Category tabs with ARIA roles for better accessibility -->
+      <div class="library-tabs" role="tablist" aria-label="Book categories">
+        <button class="tab-btn active" data-category="Agriculture" role="tab" aria-selected="true">Agriculture</button> <!-- Select Agriculture -->
+        <button class="tab-btn" data-category="Arts &amp; Culture" role="tab" aria-selected="false">Arts &amp; Culture</button> <!-- Select Arts & Culture -->
+        <button class="tab-btn" data-category="Entrepreneurship" role="tab" aria-selected="false">Entrepreneurship</button> <!-- Select Entrepreneurship -->
+        <button class="tab-btn" data-category="Social Sciences" role="tab" aria-selected="false">Social Sciences</button> <!-- Select Social Sciences -->
+      </div>
+      <!-- Grid where JavaScript will render the book cards -->
+      <div id="libraryGrid" class="library-grid"></div>
+    </section>
+
+    <h2 class="mt-lg">Add Your Own Book</h2>
+
+    <!-- ---------------------------------------------
+         ADD/EDIT FORM: Create or update a book
+         Fields are validated on blur and on submit
+    ---------------------------------------------- -->
+    <form id="bookForm" class="card" style="max-width: 600px; margin: 0 auto;" novalidate>
+      <!-- Title input -->
+      <div class="form-group">
+        <label for="title" class="form-label">Title *</label> <!-- Label for the title -->
+        <input type="text" id="title" class="form-input" required> <!-- Enter the book title -->
+        <div id="titleError" class="form-error" role="alert"></div> <!-- Show title errors -->
+      </div>
+
+      <!-- Author input -->
+      <div class="form-group">
+        <label for="author" class="form-label">Author *</label> <!-- Label for the author -->
+        <input type="text" id="author" class="form-input" required> <!-- Enter the author name -->
+        <div id="authorError" class="form-error" role="alert"></div> <!-- Show author errors -->
+      </div>
+
+      <!-- Pages input -->
+      <div class="form-group">
+        <label for="pages" class="form-label">Pages *</label> <!-- Label for the page count -->
+        <input type="text" id="pages" class="form-input" required> <!-- Enter total number of pages -->
+        <div id="pagesError" class="form-error" role="alert"></div> <!-- Show pages errors -->
+      </div>
+
+      <!-- Category select -->
+      <div class="form-group">
+        <label for="tag" class="form-label">Category *</label> <!-- Label for the category -->
+        <select id="tag" class="form-select" required> <!-- Choose the category -->
+          <option value="">Select a category</option> <!-- Placeholder option -->
+          <option value="Agriculture">Agriculture</option> <!-- Agriculture option -->
+          <option value="Arts &amp; Culture">Arts &amp; Culture</option> <!-- Arts & Culture option -->
+          <option value="Entrepreneurship">Entrepreneurship</option> <!-- Entrepreneurship option -->
+          <option value="Social Sciences">Social Sciences</option> <!-- Social Sciences option -->
+        </select>
+        <div id="tagError" class="form-error" role="alert"></div> <!-- Show category errors -->
+      </div>
+
+      <!-- Date input -->
+      <div class="form-group">
+        <label for="dateAdded" class="form-label">Date Added *</label> <!-- Label for the date -->
+        <input type="date" id="dateAdded" class="form-input" required> <!-- Pick the date added -->
+        <div id="dateAddedError" class="form-error" role="alert"></div> <!-- Show date errors -->
+      </div>
+
+      <!-- Form actions -->
+      <div class="form-group">
+        <button type="submit" class="btn">Save Book</button> <!-- Submit the form -->
+        <a href="records.html" class="btn btn-secondary">Cancel</a> <!-- Go back without saving -->
+      </div>
+    </form>
+  </main>
+
+  <!-- ---------------------------------------------
+       FOOTER: Website footer with links and contacts
+  ---------------------------------------------- -->
+  <footer class="footer" aria-labelledby="site-footer-title">
+    <div class="footer-content">
+
+      <!-- Brand name and copyright -->
+      <section class="footer-col">
+        <h3 id="site-footer-title">Book &amp; Notes Vault</h3> <!-- Footer brand title -->
+        <p class="text-muted">Your personal library companion.</p> <!-- Short description -->
+        <p class="tiny text-muted">
+          &copy; <span id="year"></span> Book &amp; Notes Vault. All rights reserved. <!-- Auto‑updated year -->
+        </p>
+      </section>
+
+      <!-- Quick links (same as header) -->
+      <nav class="footer-col" aria-label="Quick links">
+        <h4>Quick Links</h4>
+        <ul class="footer-list">
+          <li><a href="index.html">About</a></li> <!-- Link to About page -->
+          <li><a href="dashboard.html">Dashboard</a></li> <!-- Link to Dashboard page -->
+          <li><a href="records.html">My Records</a></li> <!-- Link to Records page -->
+          <li><a href="form.html">Add Book</a></li> <!-- Link to Add Book page -->
+          <li><a href="settings.html">Settings</a></li> <!-- Link to Settings page -->
+        </ul>
+      </nav>
+
+      <!-- Category shortcuts -->
+      <nav class="footer-col" aria-label="Book categories">
+        <h4>Categories</h4>
+        <ul class="footer-list">
+          <li><a href="form.html?category=Agriculture">Agriculture</a></li> <!-- Category link -->
+          <li><a href="form.html?category=Arts%20%26%20Culture">Arts &amp; Culture</a></li> <!-- Category link -->
+          <li><a href="form.html?category=Entrepreneurship">Entrepreneurship</a></li> <!-- Category link -->
+          <li><a href="form.html?category=Social%20Sciences">Social Sciences</a></li> <!-- Category link -->
+        </ul>
+      </nav>
+
+      <!-- Contact information and social media -->
+      <section class="footer-col" aria-label="Contact and social">
+        <h4>Contact</h4>
+
+        <ul class="footer-list">
+          <li>Email: <a href="mailto:h.druppi@valut.com">h.druppi@valut.com</a></li> <!-- Email link -->
+          <li>Phone: <a href="tel:+250795000000">+250 795 000 000</a></li> <!-- Phone link -->
+          <li>GitHub: <a href="https://github.com/Bol-Dau" target="_blank" rel="noopener">Bol-Dau</a></li> <!-- GitHub link -->
+        </ul>
+
+        <!-- Social media icons -->
+        <div class="footer-social" aria-label="Social media">
+
+          <!-- Instagram -->
+          <a class="social-link" href="https://instagram.com/boydruppi" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path fill="currentColor" d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm10 2H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3Zm-5 3.5A5.5 5.5 0 1 1 6.5 13 5.5 5.5 0 0 1 12 7.5Zm0 2A3.5 3.5 0 1 0 15.5 13 3.5 3.5 0 0 0 12 9.5Zm5.75-2.25a1 1 0 1 1-1 1 1 1 0 0 1 1-1Z"/>
+            </svg>
+          </a>
+
+          <!-- Facebook -->
+          <a class="social-link" href="https://facebook.com/boydruppi" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path fill="currentColor" d="M13 3h3a1 1 0 0 1 1 1v3h-3a2 2 0 0 0-2 2v3h5l-1 4h-4v7h-4v-7H6v-4h3V9a5 5 0 0 1 5-5Z"/>
+            </svg>
+          </a>
+
+          <!-- X / Twitter -->
+          <a class="social-link" href="https://twitter.com/boydruppi" target="_blank" rel="noopener" aria-label="Twitter">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path fill="currentColor" d="M3 3h4.6l5.2 7.5L19 3h2l-7 9.7L21 21h-4.6l-5.5-8L7 21H5l7-9.7L3 3Z"/>
+            </svg>
+          </a>
+
+          <!-- TikTok -->
+          <a class="social-link" href="https://tiktok.com/@boydruppi" target="_blank" rel="noopener" aria-label="TikTok">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path fill="currentColor" d="M14 3h3c.2 2 1.2 3.6 3 4.6V11c-2.2-.4-3.9-1.5-5-3v6.7a6.2 6.2 0 1 1-6.2-6.2c.4 0 .8 0 1.2.1V11a2.8 2.8 0 1 0 2 2.7V3Z"/>
+            </svg>
+          </a>
+
+        </div>
+      </section>
+
+    </div>
+  </footer>
+
+  <!-- ---------------------------------------------
+       PAGE SCRIPTS: Theme, library, and form logic
+  ---------------------------------------------- -->
+  <script type="module">
+    import { addRecord, updateRecord, getRecordById, getRecords, deleteRecord } from './scripts/state.js'; /* Manage records state */
+    import { validateField } from './scripts/validators.js'; /* Validate fields using regex */
+    import { announce } from './scripts/ui.js'; /* Announce status messages to screen readers */
+    import { applyTheme } from './scripts/settings.js'; /* Apply saved theme (light/dark) */
+    import { loadLibrary, saveLibrary } from './scripts/storage.js'; /* Load and save library data */
+
+    applyTheme(); /* Apply the saved theme when the page loads */
+
+    let library = loadLibrary(); /* Try to load library data from storage */
+    if (!library) {
+      fetch('seed.json') /* Fetch seed data when first loading */
+        .then(r => r.json())
+        .then(data => {
+          library = data; /* Save the fetched data */
+          saveLibrary(library); /* Persist to localStorage */
+          renderLibrary(); /* Show the library */
+        });
+    }
+
+    const urlParams = new URLSearchParams(window.location.search); /* Read URL query values */
+    const editId = urlParams.get('id'); /* The id to edit, if present */
+    const categoryFilter = urlParams.get('category'); /* The category to preselect, if present */
+    let activeCategory = categoryFilter || 'Agriculture'; /* Pick a starting category */
+
+    const form = document.getElementById('bookForm'); /* The add/edit form element */
+    const fields = ['title', 'author', 'pages', 'tag', 'dateAdded']; /* Form field ids */
+
+    function renderLibrary() { /* Build and show the library grid */
+      if (!library) return; /* Stop if we have no data */
+      
+      const myRecords = getRecords(); /* All current records */
+      const filtered = library.filter(b => b.tag === activeCategory); /* Books in the active category */
+      const grid = document.getElementById('libraryGrid'); /* Grid container */
+      
+      grid.innerHTML = filtered.map(book => { /* Create a card for each book */
+        const inRecords = myRecords.some(r => r.title === book.title && r.author === book.author); /* Check if already added */
+        return `
+          <div class="library-card">
+            <h3>${book.title}</h3>
+            <p class="text-muted">${book.author}</p>
+            <p>${book.pages} pages</p>
+            <p><strong>${book.tag}</strong></p>
+            <button class="btn ${inRecords ? 'btn-danger' : ''}" 
+                    data-lib-id="${book.id}" 
+                    data-in-records="${inRecords}"
+                    aria-label="${inRecords ? 'Remove' : 'Add'} ${book.title} ${inRecords ? 'from' : 'to'} My Records">
+              ${inRecords ? '− Remove' : '+ Add'}
+            </button>
+          </div>
+        `;
+      }).join('');
+      
+      document.querySelectorAll('[data-lib-id]').forEach(btn => { /* Hook up Add/Remove buttons */
+        btn.addEventListener('click', () => {
+          const bookId = btn.dataset.libId; /* The library book id */
+          const inRecords = btn.dataset.inRecords === 'true'; /* Is it already in records? */
+          const book = library.find(b => b.id === bookId); /* Find the library book */
+          
+          if (inRecords) { /* Remove from records */
+            const myRecords = getRecords();
+            const record = myRecords.find(r => r.title === book.title && r.author === book.author);
+            if (record && confirm(`Remove "${book.title}" from My Records?`)) {
+              deleteRecord(record.id); /* Delete the record */
+              announce(`Removed ${book.title} from My Records`); /* Announce removal */
+              renderLibrary(); /* Refresh the grid */
+            }
+          } else { /* Add to records */
+            addRecord({
+              title: book.title,
+              author: book.author,
+              pages: book.pages,
+              tag: book.tag,
+              dateAdded: new Date().toISOString().split('T')[0]
+            }); /* Save a new record */
+            announce(`Added ${book.title} to My Records`); /* Announce addition */
+            renderLibrary(); /* Refresh the grid */
+          }
+        });
+      });
+    }
+
+    document.querySelectorAll('.tab-btn').forEach(btn => { /* Set up category tabs */
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach(b => {
+          b.classList.remove('active'); /* Clear active tab */
+          b.setAttribute('aria-selected', 'false'); /* Update ARIA state */
+        });
+        btn.classList.add('active'); /* Mark the clicked tab active */
+        btn.setAttribute('aria-selected', 'true'); /* Update ARIA state */
+        activeCategory = btn.dataset.category; /* Update the active category */
+        renderLibrary(); /* Refresh the grid */
+      });
+    });
+
+    if (categoryFilter) { /* Preselect a tab from the URL */
+      const targetBtn = document.querySelector(`[data-category="${categoryFilter}"]`);
+      if (targetBtn) {
+        document.querySelectorAll('.tab-btn').forEach(b => {
+          b.classList.remove('active'); /* Clear active tab */
+          b.setAttribute('aria-selected', 'false'); /* Update ARIA state */
+        });
+        targetBtn.classList.add('active'); /* Mark the matching tab active */
+        targetBtn.setAttribute('aria-selected', 'true'); /* Update ARIA state */
+      }
+    }
+
+    renderLibrary(); /* First render of the library grid */
+
+    if (editId) { /* If editing, fill the form with record data */
+      document.getElementById('formTitle').textContent = 'Edit Book'; /* Change the page title */
+      const record = getRecordById(editId); /* Get the record by id */
+      if (record) {
+        document.getElementById('title').value = record.title; /* Fill title */
+        document.getElementById('author').value = record.author; /* Fill author */
+        document.getElementById('pages').value = record.pages; /* Fill pages */
+        document.getElementById('tag').value = record.tag; /* Fill category */
+        document.getElementById('dateAdded').value = record.dateAdded; /* Fill date */
+      }
+    } else {
+      document.getElementById('dateAdded').value = new Date().toISOString().split('T')[0]; /* Default date to today */
+    }
+
+    function validateFormField(field) { /* Validate a single field */
+      const input = document.getElementById(field); /* The input element */
+      const errorEl = document.getElementById(field + 'Error'); /* The error box */
+      const errors = validateField(field, input.value); /* Get validation errors */
+
+      if (errors.length > 0) {
+        input.classList.add('invalid'); /* Mark invalid */
+        errorEl.textContent = errors[0]; /* Show the first error message */
+        input.setAttribute('aria-invalid', 'true'); /* ARIA invalid true */
+        input.setAttribute('aria-describedby', field + 'Error'); /* Link to error box */
+        return false; /* Not valid */
+      } else {
+        input.classList.remove('invalid'); /* Clear invalid state */
+        errorEl.textContent = ''; /* Clear error message */
+        input.removeAttribute('aria-invalid'); /* Remove ARIA flag */
+        input.removeAttribute('aria-describedby'); /* Remove ARIA link */
+        return true; /* Valid */
+      }
+    }
+
+    fields.forEach(field => { /* Add blur and input validators */
+      const input = document.getElementById(field); /* Each input */
+      input.addEventListener('blur', () => validateFormField(field)); /* Validate on blur */
+      input.addEventListener('input', () => { /* Revalidate while typing if it was invalid */
+        if (input.classList.contains('invalid')) {
+          validateFormField(field);
+        }
+      });
+    });
+
+    form.addEventListener('submit', (e) => { /* Handle form submission */
+      e.preventDefault(); /* Stop normal form submit */
+
+      let isValid = true; /* Overall validity */
+      let firstInvalid = null; /* First bad field */
+
+      fields.forEach(field => { /* Validate all fields */
+        if (!validateFormField(field)) {
+          isValid = false; /* Mark invalid */
+          if (!firstInvalid) {
+            firstInvalid = document.getElementById(field); /* Remember the first invalid field */
+          }
+        }
+      });
+
+      if (!isValid) { /* If there are errors, focus and alert */
+        firstInvalid.focus(); /* Send focus to the first invalid field */
+        announce('Please fix the errors in the form', 'assertive'); /* Announce the error */
+        return; /* Stop submit */
+      }
+
+      const record = { /* Build the record from the form */
+        title: document.getElementById('title').value, /* Take the title */
+        author: document.getElementById('author').value, /* Take the author */
+        pages: parseInt(document.getElementById('pages').value), /* Take the pages number */
+        tag: document.getElementById('tag').value, /* Take the category */
+        dateAdded: document.getElementById('dateAdded').value /* Take the date */
+      };
+
+      if (editId) { /* Update existing */
+        updateRecord(editId, record); /* Save the update */
+        announce(`Updated ${record.title}`); /* Announce update */
+      } else { /* Add new */
+        addRecord(record); /* Save the new record */
+        announce(`Added ${record.title}`); /* Announce add */
+      }
+
+      window.location.href = 'records.html'; /* Go back to the records list */
+    });
+    document.getElementById('year').textContent = new Date().getFullYear(); /* Set current year automatically */
+  </script>
+</body>
+</html>
+
